@@ -1,6 +1,7 @@
 import 'package:adaa/screens_admin/addCoursepage.dart';
 import 'package:adaa/screens_admin/addDepartment.dart';
 import 'package:adaa/screens_admin/courseTable.dart';
+import 'package:adaa/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
 import 'departmentTable.dart';
@@ -9,6 +10,19 @@ class AdminScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const LoginScreen()),
+            );
+          },
+        ),
+        title: Text('Admin Page'),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

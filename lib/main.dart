@@ -1,4 +1,4 @@
-import 'package:adaa/screens/loginPage.dart';
+import 'package:adaa/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,8 +15,8 @@ class Home extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.orangeAccent,
-          title: Text("MTI Academic Website",
-              style: TextStyle(color: Colors.black)),
+          title:
+              Text("MTI Academic App", style: TextStyle(color: Colors.black)),
           centerTitle: true,
         ),
         body: LoginScreen(),

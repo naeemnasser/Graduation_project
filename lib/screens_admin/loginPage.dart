@@ -1,5 +1,8 @@
-import 'package:adaa/screens/adminpage.dart';
+import 'package:adaa/screens_admin/adminpage.dart';
+import 'package:adaa/screens_advisor/Advisor_home.dart';
 import 'package:flutter/material.dart';
+
+import '../screens_student/scheduled_classes_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -22,6 +25,20 @@ class _LoginScreenState extends State<LoginScreen> {
         context,
         MaterialPageRoute(builder: (context) => AdminScreen()),
       );
+    } else if (_emailController.text == "advisor" &&
+        _passwordController.text == "advisor") {
+      // Navigate to Advisor Home Screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => AdvisorScreen()),
+      );
+    } else if (_emailController.text == "student" &&
+        _passwordController.text == "student") {
+      // Navigate to Advisor Home Screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => ScheduledClassesScreen()),
+      );
     } else {
       // Show error message
       ScaffoldMessenger.of(context).showSnackBar(
@@ -40,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'lib/Assets/mti_logo.png', // Replace with your MTI logo asset
+                'assets/image.png', // Replace with your MTI logo asset
                 height: 100,
               ),
               SizedBox(height: 20),
@@ -82,30 +99,26 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 20),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.blue), // Blue background
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  backgroundColor: WidgetStateProperty.all(Colors.blue[900]),
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(10.0), // Rounded corners
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  padding: MaterialStateProperty.all(
-                    EdgeInsets.symmetric(
-                        horizontal: 50, vertical: 15), // Button padding
+                  padding: WidgetStateProperty.all(
+                    EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   ),
                 ),
                 onPressed: login,
                 child: Text(
                   "Log In",
-                  style: TextStyle(
-                      fontSize: 16, color: Colors.white), // Text styling
+                  style: TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
               SizedBox(height: 10),
               TextButton(
                 onPressed: () {
-                  // Forgot password functionality can go here
+                  // الفانكشن تبع نسيت الباس
                 },
                 child: Text("Forgot Password?"),
               ),
