@@ -1,6 +1,6 @@
-import 'package:adaa/screens/addCoursepage.dart';
-import 'package:adaa/screens/addDepartment.dart';
-import 'package:adaa/screens/courseTable.dart';
+import 'package:adaa/screens_admin/addCoursepage.dart';
+import 'package:adaa/screens_admin/addDepartment.dart';
+import 'package:adaa/screens_admin/courseTable.dart';
 import 'package:flutter/material.dart';
 
 import 'departmentTable.dart';
@@ -48,7 +48,7 @@ class AdminScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 21),
             Row(
               children: [
                 _buildActionCard(
