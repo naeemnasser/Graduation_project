@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 
 class tableitems extends StatelessWidget {
   final String courseTitle;
+  final String instructor;
+  final String place;
+  final String type;
+  final String time;
 
   const tableitems({
     super.key,
     required this.courseTitle,
+    required this.instructor,
+    required this.place,
+    required this.type,
+    required this.time,
   });
 
   @override
@@ -47,9 +55,9 @@ class tableitems extends StatelessWidget {
                 ),
               ],
               //instructor name
-              rows: const [
+              rows: [
                 DataRow(cells: [
-                  DataCell(Text('Supervisor')),
+                  DataCell(Text(instructor)),
                 ]),
               ],
             ),
@@ -67,9 +75,9 @@ class tableitems extends StatelessWidget {
                 ),
               ],
               //place
-              rows: const [
+              rows: [
                 DataRow(cells: [
-                  DataCell(Text('S/L')),
+                  DataCell(Text(place)),
                 ]),
               ],
             ),
@@ -86,9 +94,9 @@ class tableitems extends StatelessWidget {
                 ),
               ],
               //type
-              rows: const [
+              rows: [
                 DataRow(cells: [
-                  DataCell(Text('S/L')),
+                  DataCell(Text(type)),
                 ]),
               ],
             ),
@@ -105,9 +113,9 @@ class tableitems extends StatelessWidget {
                 ),
               ],
               //time
-              rows: const [
+              rows: [
                 DataRow(cells: [
-                  DataCell(Text('09:00-15:35')),
+                  DataCell(Text(time)),
                 ]),
               ],
             ),

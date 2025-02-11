@@ -37,7 +37,13 @@ class _LoginScreenState extends State<LoginScreen> {
       // Navigate to Advisor Home Screen
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => ScheduledClassesScreen()),
+        MaterialPageRoute(
+            builder: (context) => ScheduledClassesScreen(
+                courseTitle: '',
+                instructor: '',
+                place: '',
+                type: '',
+                time: '')),
       );
     } else {
       // Show error message
