@@ -1,12 +1,8 @@
 import 'package:adaa/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(Home());
-}
-
-class Home extends StatelessWidget {
-  const Home({super.key});
+class Instructor extends StatelessWidget {
+  const Instructor({super.key});
 
   @override
   Widget build(BuildContext context) {

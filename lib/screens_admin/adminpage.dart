@@ -1,10 +1,9 @@
 import 'package:adaa/screens_admin/addCoursepage.dart';
 import 'package:adaa/screens_admin/addDepartment.dart';
 import 'package:adaa/screens_admin/courseTable.dart';
+import 'package:adaa/screens_admin/departmentTable.dart';
 import 'package:adaa/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
-
-import 'departmentTable.dart';
 
 class AdminScreen extends StatelessWidget {
   @override
