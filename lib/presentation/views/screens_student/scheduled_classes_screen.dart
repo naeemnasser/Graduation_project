@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../model/tableitem.dart';
+import '../../../model/tableitem.dart';
 import '../screens_admin/loginPage.dart';
 
 class ScheduledClassesScreen extends StatelessWidget {

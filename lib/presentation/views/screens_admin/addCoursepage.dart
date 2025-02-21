@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../model/course.dart';
+import '../../../model/course.dart';
 
 class AddCourseScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();

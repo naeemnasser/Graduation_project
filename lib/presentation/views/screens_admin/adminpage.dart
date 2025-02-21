@@ -1,7 +1,7 @@
-import 'package:adaa/screens_admin/addCoursepage.dart';
-import 'package:adaa/screens_admin/addDepartment.dart';
-import 'package:adaa/screens_admin/courseTable.dart';
-import 'package:adaa/screens_admin/loginPage.dart';
+import 'package:adaa/presentation/views/screens_admin/addCoursepage.dart';
+import 'package:adaa/presentation/views/screens_admin/addDepartment.dart';
+import 'package:adaa/presentation/views/screens_admin/courseTable.dart';
+import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
 import 'departmentTable.dart';

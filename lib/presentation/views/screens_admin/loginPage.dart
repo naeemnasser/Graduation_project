@@ -1,5 +1,6 @@
-import 'package:adaa/screens_admin/adminpage.dart';
-import 'package:adaa/screens_advisor/Advisor_home.dart';
+import 'package:adaa/presentation/views/financial_ffairs/financial_ffairs_view.dart';
+import 'package:adaa/presentation/views/screens_admin/adminpage.dart';
+import 'package:adaa/presentation/views/screens_advisor/Advisor_home.dart';
 import 'package:flutter/material.dart';
 
 import '../screens_student/scheduled_classes_screen.dart';
@@ -38,6 +39,13 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => ScheduledClassesScreen()),
+      );
+    } else if (_emailController.text == "fi" &&
+        _passwordController.text == "fi") {
+      // Navigate to Advisor Home Screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => FinancialAffairsView()),
       );
     } else {
       // Show error message

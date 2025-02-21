@@ -1,4 +1,4 @@
-import 'package:adaa/screens_admin/loginPage.dart';
+import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
