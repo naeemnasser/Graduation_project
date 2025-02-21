@@ -1,9 +1,6 @@
+
+import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD:lib/presentation/views/screens_student/scheduled_classes_screen.dart
-import '../../../model/tableitem.dart';
-=======
->>>>>>> 36108923e79747e9297a74dbdb28f1b6216c3944:lib/screens_student/scheduled_classes_screen.dart
-import '../screens_admin/loginPage.dart';
 
 class ScheduledClassesScreen extends StatelessWidget {
   const ScheduledClassesScreen(

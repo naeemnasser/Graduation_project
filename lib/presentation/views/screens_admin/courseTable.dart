@@ -1,6 +1,7 @@
+import 'package:adaa/models/course.dart';
 import 'package:flutter/material.dart';
 
-import '../models/course.dart';
+
 
 class CourseTableScreen extends StatelessWidget {
   final List<Course> courses = [
