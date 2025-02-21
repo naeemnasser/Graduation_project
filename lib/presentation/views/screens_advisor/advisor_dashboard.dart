@@ -1,18 +1,18 @@
+import 'package:adaa/presentation/views/screens_advisor/semester_info.dart';
 import 'package:flutter/material.dart';
-import '../screens_admin/loginPage.dart';
 
 class DashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white24,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => const LoginScreen()),
+              MaterialPageRoute(builder: (context) => SemesterInfoPage()),
             );
           },
         ),
@@ -27,32 +27,6 @@ class DashboardPage extends StatelessWidget {
                     color: Colors.black, fontWeight: FontWeight.bold)),
           ],
         ),
-        actions: [
-          TextButton(
-              onPressed: () {},
-              child:
-                  Text("Semester Info", style: TextStyle(color: Colors.black))),
-          TextButton(
-              onPressed: () {},
-              child: Text("Requests", style: TextStyle(color: Colors.black))),
-          TextButton(
-              onPressed: () {},
-              child: Text("Dashboard",
-                  style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold))),
-          IconButton(
-              icon: Icon(Icons.notifications, color: Colors.black),
-              onPressed: () {}),
-          IconButton(
-              icon: Icon(Icons.account_circle, color: Colors.black),
-              onPressed: () {}),
-          IconButton(
-              icon: Icon(Icons.help_outline, color: Colors.black),
-              onPressed: () {}),
-          TextButton(
-              onPressed: () {},
-              child: Text("Logout", style: TextStyle(color: Colors.black))),
-        ],
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),

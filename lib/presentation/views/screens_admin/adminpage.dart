@@ -1,123 +1,173 @@
-
-
-import 'package:adaa/presentation/views/screens_admin/addCoursepage.dart';
-import 'package:adaa/presentation/views/screens_admin/addDepartment.dart';
-import 'package:adaa/presentation/views/screens_admin/courseTable.dart';
-import 'package:adaa/presentation/views/screens_admin/departmentTable.dart';
-import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-class AdminScreen extends StatelessWidget {
+import 'loginPage.dart';
+
+class AdminDashboard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const LoginScreen()),
-            );
-          },
-        ),
-        title: Text('Admin Page'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Dashboard',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            Row(
-              children: [
-                _buildActionCard(
-                  context,
-                  title: 'Add Course',
-                  icon: Icons.add,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AddCourseScreen()),
-                    );
-                  },
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white38,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
+              );
+            },
+          ),
+          elevation: 1,
+          title: Row(
+            children: [
+              Image.asset("assets/advisorylogostroke.png",
+                  height: 40), // Replace with your logo
+              SizedBox(width: 10),
+              Text("Dashboard",
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold)),
+              SizedBox(width: 20),
+              Container(
+                height: 20,
+                child: VerticalDivider(
+                  color: Colors.black,
+                  thickness: 1,
                 ),
-                SizedBox(width: 20),
-                _buildActionCard(
-                  context,
-                  title: 'Add Department',
-                  icon: Icons.add,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => AddDepartmentScreen()),
-                    );
-                  },
-                ),
-              ],
-            ),
-            SizedBox(height: 21),
-            Row(
-              children: [
-                _buildActionCard(
-                  context,
-                  title: 'Course Table',
-                  icon: Icons.table_chart,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CourseTableScreen()),
-                    );
-                  },
-                ),
-                SizedBox(width: 20),
-                _buildActionCard(
-                  context,
-                  title: 'Department Table',
-                  icon: Icons.table_chart,
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => DepartmentTableScreen()),
-                    );
-                  },
-                ),
-              ],
-            ),
+              ),
+              SizedBox(width: 20),
+              Text("Requests",
+                  style: TextStyle(
+                      color: Colors.black, fontWeight: FontWeight.bold)),
+              Spacer(),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()),
+                  );
+                },
+                child: Text("Logout",
+                    style: TextStyle(
+                        color: Colors.black, fontWeight: FontWeight.bold)),
+              ),
+            ],
+          ),
+          actions: [
+            IconButton(icon: Icon(Icons.notifications), onPressed: () {}),
+            IconButton(icon: Icon(Icons.account_circle), onPressed: () {}),
+            IconButton(icon: Icon(Icons.help_outline), onPressed: () {}),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildActionCard(BuildContext context,
-      {required String title,
-      required IconData icon,
-      required VoidCallback onTap}) {
-    return Expanded(
-      child: InkWell(
-        onTap: onTap,
-        child: Card(
-          elevation: 4,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(icon, size: 40),
+                Text('Courses',
+                    style:
+                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                 SizedBox(height: 10),
-                Text(
-                  title,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                DataTable(
+                  columns: [
+                    DataColumn(
+                        label: Text('Code',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                    DataColumn(
+                        label: Text('Name',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                    DataColumn(
+                        label: Text('Level',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                    DataColumn(
+                        label: Text('No of Lectures',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                    DataColumn(
+                        label: Text('No of Sections',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                    DataColumn(
+                        label: Text('No of Hours',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                    DataColumn(
+                        label: Text('Department',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                    DataColumn(
+                        label: Text('Status',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                  ],
+                  rows: [
+                    // Add your DataRow items here
+                  ],
+                ),
+                SizedBox(height: 20),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Add your onPressed functionality here
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF0d6efd), // Button color
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 60,
+                          vertical: 12), // Increased width by 10 px
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0), // Sharp corners
+                      ),
+                    ),
+                    child: Text(
+                      'Add Course',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 40),
+                Text('Departments',
+                    style:
+                        TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                SizedBox(height: 10),
+                DataTable(
+                  columns: [
+                    DataColumn(
+                        label: Text('Code',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                    DataColumn(
+                        label: Text('Name',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                    DataColumn(
+                        label: Text('Status',
+                            style: TextStyle(fontWeight: FontWeight.bold))),
+                  ],
+                  rows: [
+                    // Add your DataRow items here
+                  ],
+                ),
+                SizedBox(height: 20),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Add your onPressed functionality here
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF0d6efd), // Button color
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 60,
+                          vertical: 12), // Increased width by 10 px
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(0), // Sharp corners
+                      ),
+                    ),
+                    child: Text(
+                      'Add Department',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),

@@ -1,4 +1,3 @@
-
 import 'package:adaa/models/course.dart';
 import 'package:flutter/material.dart';
 

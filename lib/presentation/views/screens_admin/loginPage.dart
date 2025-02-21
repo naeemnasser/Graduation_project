@@ -1,10 +1,10 @@
-
-
 import 'package:adaa/instructor_screens/instructor_table.dart';
 import 'package:adaa/presentation/views/financial_ffairs/financial_ffairs_view.dart';
 import 'package:adaa/presentation/views/screens_admin/adminpage.dart';
 import 'package:adaa/presentation/views/screens_student/scheduled_classes_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../screens_advisor/semester_info.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -26,14 +26,14 @@ class _LoginScreenState extends State<LoginScreen> {
       // Navigate to Admin Home Screen
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => AdminScreen()),
+        MaterialPageRoute(builder: (context) => AdminDashboard()),
       );
     } else if (_emailController.text == "advisor" &&
         _passwordController.text == "advisor") {
       // Navigate to Advisor Home Screen
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => InstructorTimetable()),
+        MaterialPageRoute(builder: (context) => SemesterInfoPage()),
       );
     } else if (_emailController.text == "instructor" &&
         _passwordController.text == "instructor") {
