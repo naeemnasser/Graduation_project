@@ -1,5 +1,6 @@
+import 'package:adaa/models/department.dart';
 import 'package:flutter/material.dart';
-import '../../../model/department.dart';
+
 
 class DepartmentTableScreen extends StatelessWidget {
   final List<Department> departments = [

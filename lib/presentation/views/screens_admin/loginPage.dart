@@ -1,9 +1,10 @@
+
+
+import 'package:adaa/instructor_screens/instructor_table.dart';
 import 'package:adaa/presentation/views/financial_ffairs/financial_ffairs_view.dart';
 import 'package:adaa/presentation/views/screens_admin/adminpage.dart';
-import 'package:adaa/presentation/views/screens_advisor/Advisor_home.dart';
+import 'package:adaa/presentation/views/screens_student/scheduled_classes_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../screens_student/scheduled_classes_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -17,10 +18,11 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   final String email = "admin";
-  final String pasword = "admin";
+  final String password = "admin";
 
   void login() {
-    if (_emailController.text == email && _passwordController.text == pasword) {
+    if (_emailController.text == email &&
+        _passwordController.text == password) {
       // Navigate to Admin Home Screen
       Navigator.pushReplacement(
         context,
@@ -31,14 +33,27 @@ class _LoginScreenState extends State<LoginScreen> {
       // Navigate to Advisor Home Screen
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => AdvisorScreen()),
+        MaterialPageRoute(builder: (context) => InstructorTimetable()),
+      );
+    } else if (_emailController.text == "instructor" &&
+        _passwordController.text == "instructor") {
+      // Navigate to Instructor Home Screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => InstructorTimetable()),
       );
     } else if (_emailController.text == "student" &&
         _passwordController.text == "student") {
-      // Navigate to Advisor Home Screen
+      // Navigate to Student Home Screen
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => ScheduledClassesScreen()),
+        MaterialPageRoute(
+            builder: (context) => ScheduledClassesScreen(
+                courseTitle: '',
+                instructor: '',
+                place: '',
+                type: '',
+                time: '')),
       );
     } else if (_emailController.text == "fi" &&
         _passwordController.text == "fi") {
@@ -74,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: TextField(
                   controller: _emailController,
                   decoration: InputDecoration(
-                    labelText: 'Enter your mail',
+                    labelText: 'Enter your email',
                     prefixIcon: Icon(Icons.person),
                     border: OutlineInputBorder(),
                   ),
@@ -107,13 +122,13 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 20),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.blue[900]),
-                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue[900]),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  padding: WidgetStateProperty.all(
+                  padding: MaterialStateProperty.all(
                     EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   ),
                 ),
@@ -126,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 10),
               TextButton(
                 onPressed: () {
-                  // الفانكشن تبع نسيت الباس
+                  // Function for forgot password
                 },
                 child: Text("Forgot Password?"),
               ),
