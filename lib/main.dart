@@ -13,12 +13,6 @@ class Homescreen extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.orangeAccent,
-          title:
-              Text("MTI Academic App", style: TextStyle(color: Colors.black)),
-          centerTitle: true,
-        ),
         body: LoginScreen(),
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
-import 'package:adaa/presentation/views/screens_advisor/advisor_dashboard.dart';
+import 'package:adaa/presentation/views/screens_advisor/dashboard.dart';
 import 'package:adaa/presentation/views/screens_advisor/requests.dart';
 import 'package:flutter/material.dart';
 
@@ -26,10 +26,7 @@ class SemesterInfoPage extends StatelessWidget {
             Image.asset("assets/advisorylogostroke.png",
                 height: 40), // Replace with your logo
             SizedBox(width: 10),
-          ],
-        ),
-        actions: [
-          TextButton(
+            TextButton(
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
@@ -37,16 +34,18 @@ class SemesterInfoPage extends StatelessWidget {
                 );
               },
               child:
-                  Text("Semester Info", style: TextStyle(color: Colors.black))),
-          TextButton(
+                  Text("Semester Info", style: TextStyle(color: Colors.black)),
+            ),
+            TextButton(
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => Requests()),
                 );
               },
-              child: Text("Requests", style: TextStyle(color: Colors.black))),
-          TextButton(
+              child: Text("Requests", style: TextStyle(color: Colors.black)),
+            ),
+            TextButton(
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
@@ -55,24 +54,32 @@ class SemesterInfoPage extends StatelessWidget {
               },
               child: Text("Dashboard",
                   style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold))),
+                      color: Colors.black, fontWeight: FontWeight.bold)),
+            ),
+          ],
+        ),
+        actions: [
           IconButton(
-              icon: Icon(Icons.notifications, color: Colors.black),
-              onPressed: () {}),
+            icon: Icon(Icons.notifications, color: Colors.black),
+            onPressed: () {},
+          ),
           IconButton(
-              icon: Icon(Icons.account_circle, color: Colors.black),
-              onPressed: () {}),
+            icon: Icon(Icons.account_circle, color: Colors.black),
+            onPressed: () {},
+          ),
           IconButton(
-              icon: Icon(Icons.help_outline, color: Colors.black),
-              onPressed: () {}),
+            icon: Icon(Icons.help_outline, color: Colors.black),
+            onPressed: () {},
+          ),
           TextButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                );
-              },
-              child: Text("Logout", style: TextStyle(color: Colors.black))),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+              );
+            },
+            child: Text("Logout", style: TextStyle(color: Colors.black)),
+          ),
         ],
       ),
       body: Padding(
@@ -147,10 +154,15 @@ class SemesterInfoPage extends StatelessWidget {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF0d6efd), // Custom blue color
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 44,
+                            vertical: 22), // Custom padding for button
                       ),
-                      child: Text('Next'),
+                      child: Text('Next',
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white)),
                     ),
                   ),
                 ],

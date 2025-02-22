@@ -1,4 +1,3 @@
-
 import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
@@ -32,15 +31,17 @@ class ScheduledClassesScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Choose Level Dropdown
-            Text(
-              'Level...',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            Center(
+              child: Text(
+                'Level...',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
             ),
             SizedBox(height: 16),
             buildDaySection('Sunday', [
@@ -54,11 +55,18 @@ class ScheduledClassesScreen extends StatelessWidget {
               ['Math 1', 'Dr. Salma', 'C2.2', 'Lecture', '12:00-2:00'],
               ['Linear Algebra 1', 'Dr. Alaa', 'L1', 'L', '12:00-2:00'],
             ]),
+            buildDaySection('Monday', [
+              ['dsp', 'Dr. said', 'L3', 'Lecture', '1:00-2:15'],
+              ['Math1', 'Dr. Salma', 'Sec 1', 'S', '10:00-12:00'],
+              ['Math1', 'Dr. Salma', 'Sec 5', 'S', '12:00-2:00'],
+            ]),
             buildDaySection('Tuesday', [
               ['Math1', 'Dr. Salma', 'Sec 1', 'S', '10:00-12:00'],
             ]),
             buildDaySection('Wednesday', [
               ['AI', 'Dr. Mohamed', 'L3', 'Lecture', '10:00-12:00'],
+              ['Operating Systems', 'Dr. Sarah', 'L2', 'Lecture', '12:00-2:00'],
+              ['Networks', 'Dr. John', 'L1', 'Lecture', '2:00-4:00'],
             ]),
             buildDaySection('Thursday', [
               ['Databases 1', 'Dr. Mohamed', 'L3', 'Lecture', '10:00-12:00'],
@@ -83,31 +91,39 @@ class ScheduledClassesScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 8),
-          Table(
-            border: TableBorder.all(),
-            columnWidths: {
-              0: FixedColumnWidth(220.0),
-              1: FixedColumnWidth(220.0),
-              2: FixedColumnWidth(220.0),
-              3: FixedColumnWidth(220.0),
-              4: FixedColumnWidth(220.0),
-            },
-            children: [
-              TableRow(
+          Container(
+            width: 800,
+            height: 150,
+            child: Center(
+              child: Table(
+                border: TableBorder.all(),
+                columnWidths: {
+                  0: FixedColumnWidth(180.0),
+                  1: FixedColumnWidth(180.0),
+                  2: FixedColumnWidth(180.0),
+                  3: FixedColumnWidth(180.0),
+                  4: FixedColumnWidth(180.0),
+                  5: FixedColumnWidth(180.0),
+                },
                 children: [
-                  buildTableCell('Course Title', isHeader: true),
-                  buildTableCell('Instructor', isHeader: true),
-                  buildTableCell('Place', isHeader: true),
-                  buildTableCell('Type', isHeader: true),
-                  buildTableCell('Time', isHeader: true),
+                  TableRow(
+                    children: [
+                      buildTableCell('Course Title', isHeader: true),
+                      buildTableCell('Instructor', isHeader: true),
+                      buildTableCell('Place', isHeader: true),
+                      buildTableCell('Type', isHeader: true),
+                      buildTableCell('Time', isHeader: true),
+                    ],
+                  ),
+                  ...courses.map((course) {
+                    return TableRow(
+                      children:
+                          course.map((data) => buildTableCell(data)).toList(),
+                    );
+                  }).toList(),
                 ],
               ),
-              ...courses.map((course) {
-                return TableRow(
-                  children: course.map((data) => buildTableCell(data)).toList(),
-                );
-              }).toList(),
-            ],
+            ),
           ),
         ],
       ),
@@ -115,13 +131,21 @@ class ScheduledClassesScreen extends StatelessWidget {
   }
 
   Widget buildTableCell(String text, {bool isHeader = false}) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        color: isHeader
+            ? Colors.grey[400]
+            : Colors.transparent, // Apply color only to headers
+        border: Border.all(color: Colors.black), // Ensure border consistency
+      ),
+      alignment: Alignment.center,
       child: Text(
         text,
         style: TextStyle(
           fontWeight: isHeader ? FontWeight.bold : FontWeight.normal,
         ),
+        textAlign: TextAlign.center,
       ),
     );
   }

@@ -1,7 +1,8 @@
-import 'package:adaa/instructor_screens/instructor_table.dart';
+import 'package:adaa/presentation/views/instructor_screens/instructor_table.dart';
 import 'package:adaa/presentation/views/financial_ffairs/financial_ffairs_view.dart';
 import 'package:adaa/presentation/views/screens_admin/adminpage.dart';
 import 'package:adaa/presentation/views/screens_student/scheduled_classes_screen.dart';
+import 'package:adaa/presentation/views/student_affairs/application.dart';
 import 'package:flutter/material.dart';
 
 import '../screens_advisor/semester_info.dart';
@@ -18,7 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   final String email = "admin";
-  final String password = "admin";
+  final String password = "1234";
 
   void login() {
     if (_emailController.text == email &&
@@ -29,21 +30,28 @@ class _LoginScreenState extends State<LoginScreen> {
         MaterialPageRoute(builder: (context) => AdminDashboard()),
       );
     } else if (_emailController.text == "advisor" &&
-        _passwordController.text == "advisor") {
+        _passwordController.text == "1234") {
       // Navigate to Advisor Home Screen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => SemesterInfoPage()),
       );
+    } else if (_emailController.text == "saffirs" &&
+        _passwordController.text == "1234") {
+      // Navigate to Advisor Home Screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => ApplicationScreen()),
+      );
     } else if (_emailController.text == "instructor" &&
-        _passwordController.text == "instructor") {
+        _passwordController.text == "1234") {
       // Navigate to Instructor Home Screen
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => InstructorTimetable()),
       );
     } else if (_emailController.text == "student" &&
-        _passwordController.text == "student") {
+        _passwordController.text == "1234") {
       // Navigate to Student Home Screen
       Navigator.pushReplacement(
         context,
@@ -56,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 time: '')),
       );
     } else if (_emailController.text == "fi" &&
-        _passwordController.text == "fi") {
+        _passwordController.text == "1234") {
       // Navigate to Advisor Home Screen
       Navigator.pushReplacement(
         context,
@@ -73,6 +81,13 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.orangeAccent,
+        title: Text("MTI Academic App", style: TextStyle(color: Colors.black)),
+        leading: Image.asset('assets/advisorylogostroke.png',
+            height: 40), // Replace with your MTI logo asset
+        centerTitle: true,
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -80,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/image.png', // Replace with your MTI logo asset
+                'assets/advisorylogostroke.png', // Replace with your MTI logo asset
                 height: 100,
               ),
               SizedBox(height: 20),
@@ -122,13 +137,13 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 20),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue[900]),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  backgroundColor: WidgetStateProperty.all(Colors.blue[900]),
+                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  padding: MaterialStateProperty.all(
+                  padding: WidgetStateProperty.all(
                     EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   ),
                 ),

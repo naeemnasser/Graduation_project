@@ -1,5 +1,4 @@
-//make simple ui for requests
-import 'package:adaa/presentation/views/screens_advisor/advisor_dashboard.dart';
+import 'package:adaa/presentation/views/screens_advisor/semester_info.dart';
 import 'package:flutter/material.dart';
 
 class Requests extends StatelessWidget {
@@ -12,7 +11,7 @@ class Requests extends StatelessWidget {
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => DashboardPage()),
+              MaterialPageRoute(builder: (context) => SemesterInfoPage()),
             );
           },
         ),
