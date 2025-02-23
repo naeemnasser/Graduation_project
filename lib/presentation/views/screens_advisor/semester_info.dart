@@ -3,6 +3,8 @@ import 'package:adaa/presentation/views/screens_advisor/dashboard.dart';
 import 'package:adaa/presentation/views/screens_advisor/requests.dart';
 import 'package:flutter/material.dart';
 
+import '../profile/personal_profile.dart';
+
 class SemesterInfoPage extends StatelessWidget {
   const SemesterInfoPage({super.key});
 
@@ -64,8 +66,13 @@ class SemesterInfoPage extends StatelessWidget {
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(Icons.account_circle, color: Colors.black),
-            onPressed: () {},
+            icon: Icon(Icons.person, color: Colors.black),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              );
+            },
           ),
           IconButton(
             icon: Icon(Icons.help_outline, color: Colors.black),

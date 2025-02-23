@@ -1,3 +1,4 @@
+import 'package:adaa/presentation/views/profile/personal_profile.dart';
 import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,7 @@ class TuitionReceiptView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 192, 233, 243),
         leading: Image.asset('assets/image.png'),
         title: Row(
           children: [
@@ -60,6 +62,10 @@ class TuitionReceiptView extends StatelessWidget {
             icon: Icon(Icons.person),
             onPressed: () {
               // Navigate to Profile
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              );
             },
           ),
           IconButton(

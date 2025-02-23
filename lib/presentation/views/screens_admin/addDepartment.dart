@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'adminpage.dart';
+
 class AddDepartmentScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>(); // Form key for validation
   final _departmentNameController = TextEditingController();
@@ -10,6 +12,15 @@ class AddDepartmentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => AdminDashboard()),
+            );
+          },
+        ),
         title: Text('Add Department'),
       ),
       body: Padding(

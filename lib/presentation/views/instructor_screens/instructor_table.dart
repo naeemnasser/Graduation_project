@@ -77,7 +77,7 @@ class InstructorTimetable extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: const Color.fromARGB(255, 192, 233, 243),
         title: Text("Instructor Timetable"),
         centerTitle: true,
       ),

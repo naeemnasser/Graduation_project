@@ -1,8 +1,10 @@
+import 'package:adaa/presentation/views/home/homescreen.dart';
 import 'package:adaa/presentation/views/instructor_screens/instructor_table.dart';
 import 'package:adaa/presentation/views/financial_ffairs/financial_ffairs_view.dart';
 import 'package:adaa/presentation/views/screens_admin/adminpage.dart';
 import 'package:adaa/presentation/views/screens_student/scheduled_classes_screen.dart';
-import 'package:adaa/presentation/views/student_affairs/application.dart';
+import 'package:adaa/presentation/views/student_affairs/Aplications.dart';
+
 import 'package:flutter/material.dart';
 
 import '../screens_advisor/semester_info.dart';
@@ -41,7 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // Navigate to Advisor Home Screen
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => ApplicationScreen()),
+        MaterialPageRoute(builder: (context) => ApplicationsPage()),
       );
     } else if (_emailController.text == "instructor" &&
         _passwordController.text == "1234") {
@@ -82,10 +84,30 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orangeAccent,
-        title: Text("MTI Academic App", style: TextStyle(color: Colors.black)),
-        leading: Image.asset('assets/advisorylogostroke.png',
-            height: 40), // Replace with your MTI logo asset
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
+          },
+        ),
+        backgroundColor: const Color.fromARGB(255, 192, 233, 243),
+        title: Text("ADAAP App", style: TextStyle(color: Colors.black)),
+        flexibleSpace: Align(
+          alignment: Alignment.centerLeft,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 33.0),
+            child: Hero(
+              tag: 'homeImage',
+              child: Image.asset(
+                'assets/advisorylogostroke.png',
+                height: 40,
+              ),
+            ), // Replace with your MTI logo asset
+          ),
+        ),
         centerTitle: true,
       ),
       body: Center(
@@ -137,13 +159,13 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 20),
               ElevatedButton(
                 style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.blue[900]),
-                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                  backgroundColor: MaterialStateProperty.all(Colors.blue[900]),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  padding: WidgetStateProperty.all(
+                  padding: MaterialStateProperty.all(
                     EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   ),
                 ),

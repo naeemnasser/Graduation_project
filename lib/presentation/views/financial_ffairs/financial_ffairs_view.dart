@@ -1,5 +1,6 @@
 import 'package:adaa/core/custom_text_filed.dart';
-import 'package:adaa/presentation/views/financial_ffairs/tuition_receipt_view.dart';
+import 'package:adaa/presentation/views/financial_ffairs/petition_receipt_view.dart';
+import 'package:adaa/presentation/views/profile/personal_profile.dart';
 import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ class FinancialAffairsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 192, 233, 243),
         leading: Image.asset('assets/image.png'),
         title: Row(
           children: [
@@ -61,7 +63,10 @@ class FinancialAffairsView extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.person),
             onPressed: () {
-              // Navigate to Profile
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage()),
+              );
             },
           ),
           IconButton(

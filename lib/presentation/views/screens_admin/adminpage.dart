@@ -1,5 +1,8 @@
+import 'package:adaa/presentation/views/screens_admin/addDepartment.dart';
 import 'package:flutter/material.dart';
 
+import '../profile/personal_profile.dart';
+import 'addCoursepage.dart';
 import 'loginPage.dart';
 
 class AdminDashboard extends StatelessWidget {
@@ -57,7 +60,13 @@ class AdminDashboard extends StatelessWidget {
           ),
           actions: [
             IconButton(icon: Icon(Icons.notifications), onPressed: () {}),
-            IconButton(icon: Icon(Icons.account_circle), onPressed: () {}),
+            IconButton(
+              icon: Icon(Icons.person),
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()));
+              },
+            ),
             IconButton(icon: Icon(Icons.help_outline), onPressed: () {}),
           ],
         ),
@@ -106,6 +115,11 @@ class AdminDashboard extends StatelessWidget {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddCourseScreen()),
+                      );
                       // Add your onPressed functionality here
                     },
                     style: ElevatedButton.styleFrom(
@@ -150,6 +164,11 @@ class AdminDashboard extends StatelessWidget {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddDepartmentScreen()),
+                      );
                       // Add your onPressed functionality here
                     },
                     style: ElevatedButton.styleFrom(

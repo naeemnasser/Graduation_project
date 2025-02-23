@@ -1,4 +1,5 @@
 import 'package:adaa/models/course.dart';
+import 'package:adaa/presentation/views/screens_admin/adminpage.dart';
 import 'package:flutter/material.dart';
 
 class AddCourseScreen extends StatelessWidget {
@@ -15,6 +16,15 @@ class AddCourseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => AdminDashboard()),
+            );
+          },
+        ),
         title: Text('Add Course'),
       ),
       body: Padding(

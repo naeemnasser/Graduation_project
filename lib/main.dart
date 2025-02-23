@@ -1,4 +1,4 @@
-import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
+import 'package:adaa/presentation/views/home/homescreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class Homescreen extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: LoginScreen(),
+        body: HomeScreen(),
       ),
     );
   }
