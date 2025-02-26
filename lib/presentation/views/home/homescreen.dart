@@ -7,146 +7,234 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 192, 233, 243),
+        backgroundColor: const Color.fromARGB(255, 128, 128, 128),
+        elevation: 0.5,
         title: Row(
           children: [
             Image.asset("assets/advisorylogostroke.png", height: 40),
-            Row(
-              children: [
-                Text('ADAAP HOME ',
+            SizedBox(width: 10),
+            Expanded(
+              child: Center(
+                child: Text('ADAAP HOME ',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 22,
                         fontWeight: FontWeight.bold)),
-                Container(
-                  width: 25,
-                ),
-                TextButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
-                      );
-                    },
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ApplicationScreen()),
-                          );
-                        },
-                        child: Text('Apply'))),
-              ],
+              ),
             ),
           ],
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-          ),
+              icon: Icon(Icons.notifications, color: Colors.black54),
+              onPressed: () {}),
           IconButton(
-            icon: Icon(Icons.person),
-            onPressed: () {},
-          ),
+              icon: Icon(Icons.person, color: Colors.black54),
+              onPressed: () {}),
           IconButton(
-            icon: Icon(Icons.help_outline),
-            onPressed: () {},
-          ),
+              icon: Icon(Icons.help_outline, color: Colors.black54),
+              onPressed: () {}),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Hero(
-                tag: 'homeImage',
-                child: Image.asset(
-                  'assets/home.png', // Replace with your image asset path
-                  height: 150,
-                ),
-              ),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'About Us',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            Text(
-              'Welcome to the AI-Driven Academic Advising Platform (ADAAP), an intelligent system designed to enhance academic planning and streamline university operations.',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Our Services',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8),
-            _buildServiceTile(Icons.school, 'Personalized Academic Advising',
-                'Our AI-powered system analyzes student data to provide tailored academic guidance.'),
-            _buildServiceTile(Icons.schedule, 'Automated Course Scheduling',
-                'We ensure that students’ schedules align with credit hour limits and degree requirements.'),
-            _buildServiceTile(
-                Icons.monetization_on,
-                'Student Fees and Enrollment Management',
-                'ADAAP simplifies the tuition payment and enrollment process by automating calculations and tracking payments.'),
-            SizedBox(height: 16),
-            Center(
-              child: Hero(
-                tag: 'loginButton',
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue[800],
-                    padding: EdgeInsets.symmetric(vertical: 12, horizontal: 32),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            padding: EdgeInsets.symmetric(
+                horizontal: constraints.maxWidth > 800 ? 100.0 : 20.0,
+                vertical: 16.0),
+            child: Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 1200),
+                child: Column(
+                  children: [
+                    SizedBox(height: 20),
+                    Text(
+                      'Welcome to ADAAP',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue[900]),
                     ),
-                  ),
-                  child: Text(
-                    'Login',
-                    style: TextStyle(fontSize: 18, color: Colors.white),
-                  ),
+                    SizedBox(height: 10),
+                    Text(
+                      'AI-Driven Academic Advising Platform',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18, color: Colors.black54),
+                    ),
+                    SizedBox(height: 40),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 40),
+                              Text(
+                                'About Us ',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 32,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue[900]),
+                              ),
+                              RichText(
+                                textAlign: TextAlign.left,
+                                text: TextSpan(
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.black87),
+                                  children: [
+                                    TextSpan(
+                                      text: 'Welcome to the ',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'AI-Driven Academic Advising Platform (ADAAP)',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          ', an intelligent system designed to enhance academic learning and streamline university operations. Our platform leverages advanced AI and machine learning to provide personalized academic guidance for students, optimize course scheduling based on instructor, teacher assistant schedules, credit hours, and limited resources.',
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 40),
+                              Text(
+                                'At ADAAP, we are committed to empowering students, advisors, and university administrators with data-driven insights to ensure efficient academic decision-making. By integrating automation and generating schedules, our platform simplifies enrollment, ensures compliance with academic policies, and maximizes resource utilization.',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(
+                                    fontSize: 18, color: Colors.black87),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: 40),
+                        Expanded(
+                          child: Image.asset('assets/landing.jpg',
+                              fit: BoxFit.scaleDown),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 40),
+                    Text(
+                      'Our Services',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 28,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue[900]),
+                    ),
+                    SizedBox(height: 20),
+                    Wrap(
+                      spacing: 16.0, // Horizontal space between cards
+                      runSpacing: 16.0, // Vertical space when wrapping
+                      alignment: WrapAlignment.center,
+                      children: [
+                        SizedBox(
+                            width: 250,
+                            height: 350,
+                            child: _buildServiceCard(
+                                '1',
+                                'Personalized Academic Advising',
+                                'Our AI-powered system analyzes student recommendations, helping students stay on track with their academic goals while optimizing their schedules specially for Case Students.')),
+                        SizedBox(
+                            width: 250,
+                            height: 350,
+                            child: _buildServiceCard('2', 'Course Scheduling',
+                                'We ensure that students schedules align with credit hour limits, degree requirements, and faculty availability, minimizing conflicts and maximizing efficiency.')),
+                        SizedBox(
+                            width: 250,
+                            height: 350,
+                            child: _buildServiceCard(
+                                '3',
+                                'Student Fees & Enrollment',
+                                'ADAAP simplifies the tuition payment and enrollment process by automating fee calculations, tracking payments, and ensuring seamless registration.')),
+                        SizedBox(
+                            width: 250,
+                            height: 350,
+                            child: _buildServiceCard(
+                                '4',
+                                'Comprehensive Reports & Insights',
+                                'ADAAP generates detailed reports for administrators and advisors, offering data-driven insights to improve institutional decision making and student success rates.')),
+                      ],
+                    ),
+                    SizedBox(height: 40),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue[800],
+                        padding:
+                            EdgeInsets.symmetric(vertical: 12, horizontal: 32),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                      ),
+                      child: Text(
+                        'Apply',
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
+}
 
-  Widget _buildServiceTile(IconData icon, String title, String description) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+Widget _buildServiceCard(String number, String title, String description) {
+  return Card(
+    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    elevation: 3,
+    child: Padding(
+      padding: EdgeInsets.all(16),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(icon, size: 40, color: Colors.blue),
-          SizedBox(width: 12),
+          CircleAvatar(
+            radius: 20,
+            backgroundColor: Colors.blue[900],
+            child: Text(
+              number,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(width: 16),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(title,
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                SizedBox(height: 4),
-                Text(description, style: TextStyle(fontSize: 14)),
+                Text(
+                  title,
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue[900]),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  description,
+                  style: TextStyle(fontSize: 14, color: Colors.black87),
+                ),
               ],
             ),
           ),
         ],
       ),
-    );
-  }
+    ),
+  );
 }
