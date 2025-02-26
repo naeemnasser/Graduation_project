@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: LayoutBuilder(
-        builder: (context, constraints) {
+        builder:(context, constraints) {
           return SingleChildScrollView(
             padding: EdgeInsets.symmetric(
               horizontal: constraints.maxWidth > 800 ? 100.0 : 20.0, 
