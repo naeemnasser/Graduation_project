@@ -4,6 +4,8 @@ import 'package:adaa/presentation/views/profile/personal_profile.dart';
 import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
+import '../home/homescreen.dart';
+
 class FinancialAffairsView extends StatelessWidget {
   const FinancialAffairsView({super.key});
 
@@ -11,8 +13,16 @@ class FinancialAffairsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );
+          },
+        ),
         backgroundColor: const Color.fromARGB(255, 192, 233, 243),
-        leading: Image.asset('assets/image.png'),
         title: Row(
           children: [
             Text(

@@ -2,6 +2,8 @@ import 'package:adaa/presentation/views/profile/personal_profile.dart';
 import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
+import 'financial_ffairs_view.dart';
+
 class TuitionReceiptView extends StatelessWidget {
   const TuitionReceiptView({super.key});
 
@@ -9,8 +11,17 @@ class TuitionReceiptView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => FinancialAffairsView()),
+            );
+          },
+        ),
         backgroundColor: const Color.fromARGB(255, 192, 233, 243),
-        leading: Image.asset('assets/image.png'),
+        // leading: Image.asset('assets/image.png'),
         title: Row(
           children: [
             Text(
