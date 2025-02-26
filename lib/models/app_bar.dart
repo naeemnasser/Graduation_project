@@ -1,3 +1,4 @@
+import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -33,7 +34,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             icon: Icon(Icons.notifications, color: Colors.black54),
             onPressed: () {}),
         IconButton(
-            icon: Icon(Icons.person, color: Colors.black54), onPressed: () {}),
+            icon: Icon(Icons.person, color: Colors.black54),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+              );
+            }),
         IconButton(
             icon: Icon(Icons.help_outline, color: Colors.black54),
             onPressed: () {}),
