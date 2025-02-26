@@ -91,9 +91,9 @@ class HomeScreen extends StatelessWidget {
                           ],
                           ),
                         ),
-                        SizedBox(width: 20),
+                        SizedBox(width: 40),
                         Expanded(
-                          child: Image.asset('assets/home.png', fit: BoxFit.scaleDown),
+                          child: Image.asset('assets/landing.jpg', fit: BoxFit.scaleDown),
                         ),
                       ],
                     ),
