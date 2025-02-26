@@ -1,41 +1,14 @@
-import 'package:adaa/presentation/views/home/Applicationform..dart';
-import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
+import 'package:adaa/models/app_bar.dart';
+// import 'package:adaa/presentation/views/home/Applicationform.dart';
 import 'package:flutter/material.dart';
+
+import 'Applicationform..dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 128, 128, 128),
-        elevation: 0.5,
-        title: Row(
-          children: [
-            Image.asset("assets/advisorylogostroke.png", height: 40),
-            SizedBox(width: 10),
-            Expanded(
-              child: Center(
-                child: Text('ADAAP HOME ',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold)),
-              ),
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.notifications, color: Colors.black54),
-              onPressed: () {}),
-          IconButton(
-              icon: Icon(Icons.person, color: Colors.black54),
-              onPressed: () {}),
-          IconButton(
-              icon: Icon(Icons.help_outline, color: Colors.black54),
-              onPressed: () {}),
-        ],
-      ),
+      appBar: AppBarWidget(),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return SingleChildScrollView(
@@ -167,7 +140,7 @@ class HomeScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => LoginScreen()),
+                              builder: (context) => ApplicationScreen()),
                         );
                       },
                       style: ElevatedButton.styleFrom(
