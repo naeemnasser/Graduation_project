@@ -93,22 +93,26 @@ class _LoginScreenState extends State<LoginScreen> {
             );
           },
         ),
-        backgroundColor: const Color.fromARGB(255, 192, 233, 243),
-        title: Text("ADAAP App", style: TextStyle(color: Colors.black)),
-        flexibleSpace: Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 33.0),
-            child: Hero(
-              tag: 'homeImage',
-              child: Image.asset(
-                'assets/advisorylogostroke.png',
-                height: 40,
-              ),
-            ), // Replace with your MTI logo asset
-          ),
+               backgroundColor: const Color.fromARGB(255, 128, 128, 128),
+        elevation: 0.5,
+        title: Row(
+          children: [
+            Image.asset("assets/advisorylogostroke.png", height: 50),
+            SizedBox(width: 10),
+            Text(
+              'ADAAP',
+              style: TextStyle(
+                  color: Colors.blue[900],
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
-        centerTitle: true,
+        actions: [
+          IconButton(icon: Icon(Icons.notifications, color: Colors.black54), onPressed: () {}),
+          IconButton(icon: Icon(Icons.person, color: Colors.black54), onPressed: () {}),
+          IconButton(icon: Icon(Icons.help_outline, color: Colors.black54), onPressed: () {}),
+        ],
       ),
       body: Center(
         child: Padding(
