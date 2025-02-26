@@ -1,3 +1,4 @@
+import 'package:adaa/presentation/views/home/Applicationform..dart';
 import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
@@ -10,15 +11,33 @@ class HomeScreen extends StatelessWidget {
         title: Row(
           children: [
             Image.asset("assets/advisorylogostroke.png", height: 40),
-            SizedBox(width: 10),
-            Expanded(
-              child: Center(
-                child: Text('ADAAP HOME ',
+            Row(
+              children: [
+                Text('ADAAP HOME ',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 22,
                         fontWeight: FontWeight.bold)),
-              ),
+                Container(
+                  width: 25,
+                ),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                      );
+                    },
+                    child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ApplicationScreen()),
+                          );
+                        },
+                        child: Text('Apply'))),
+              ],
             ),
           ],
         ),
