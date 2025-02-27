@@ -1,3 +1,4 @@
+import 'package:adaa/presentation/views/follow_up/follow_up_table.dart';
 import 'package:adaa/presentation/views/home/homescreen.dart';
 import 'package:adaa/presentation/views/instructor_screens/instructor_table.dart';
 import 'package:adaa/presentation/views/financial_ffairs/financial_ffairs_view.dart';
@@ -72,6 +73,13 @@ class _LoginScreenState extends State<LoginScreen> {
         context,
         MaterialPageRoute(builder: (context) => FinancialAffairsView()),
       );
+    } else if (_emailController.text == "follow" &&
+        _passwordController.text == "1234") {
+      // Navigate to Advisor Home Screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => MyApp()),
+      );
     } else {
       // Show error message
       ScaffoldMessenger.of(context).showSnackBar(
@@ -93,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
             );
           },
         ),
-               backgroundColor: const Color.fromARGB(255, 128, 128, 128),
+        backgroundColor: const Color.fromARGB(255, 128, 128, 128),
         elevation: 0.5,
         title: Row(
           children: [
@@ -109,9 +117,15 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
         actions: [
-          IconButton(icon: Icon(Icons.notifications, color: Colors.black54), onPressed: () {}),
-          IconButton(icon: Icon(Icons.person, color: Colors.black54), onPressed: () {}),
-          IconButton(icon: Icon(Icons.help_outline, color: Colors.black54), onPressed: () {}),
+          IconButton(
+              icon: Icon(Icons.notifications, color: Colors.black54),
+              onPressed: () {}),
+          IconButton(
+              icon: Icon(Icons.person, color: Colors.black54),
+              onPressed: () {}),
+          IconButton(
+              icon: Icon(Icons.help_outline, color: Colors.black54),
+              onPressed: () {}),
         ],
       ),
       body: Center(

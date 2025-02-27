@@ -12,6 +12,7 @@ class Homescreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      // Set the theme to light
       home: Scaffold(
         body: HomeScreen(),
       ),
