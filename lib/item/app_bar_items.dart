@@ -1,36 +1,69 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
-// class AppBarWidget extends StatefulWidget implements PreferredSizeWidget {
-//   @override
-//   _AppBarWidgetState createState() => _AppBarWidgetState();
+import '../presentation/views/home/help.dart';
+import '../presentation/views/screens_admin/loginPage.dart';
 
-//   @override
-//   Size get preferredSize => Size.fromHeight(kToolbarHeight);
+class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
+  const AppBarWidget.named({
+    super.key,
+    required this.title,
+    required this.imagePath,
+  });
 
-//   final String title;
-//   final String imagePath;
-//   final Color backgroundColor;
-//   final Color iconColor;
-//   final double elevation;
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
-//   const AppBarWidget({
-//     required this.title,
-//     required this.imagePath,
-//     this.backgroundColor = const Color.fromARGB(255, 128, 128, 128),
-//     this.iconColor = Colors.black54,
-//     this.elevation = 0.5,
-//     Key? key,
-//   }) : super(key: key);
-// }
+  final String title;
+  final String imagePath;
 
-// class _AppBarWidgetState extends State<AppBarWidget> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return AppBar(
-//       title: Text(widget.title),
-//       backgroundColor: widget.backgroundColor,
-//       iconTheme: IconThemeData(color: widget.iconColor),
-//       elevation: widget.elevation,
-//     );
-//   }
-// }
+  const AppBarWidget({
+    super.key,
+    required this.title,
+    required this.imagePath,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor: const Color.fromARGB(255, 128, 128, 128),
+      elevation: 0.5,
+      title: Row(
+        children: [
+          Image.asset(imagePath, height: 40),
+          SizedBox(width: 10),
+          Expanded(
+            child: Center(
+              child: Text(title,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold)),
+            ),
+          ),
+        ],
+      ),
+      actions: [
+        IconButton(
+            icon: Icon(Icons.notifications, color: Colors.black54),
+            onPressed: () {}),
+        IconButton(
+            icon: Icon(Icons.person, color: Colors.black54),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => LoginScreen()),
+              );
+            }),
+        IconButton(
+            icon: Icon(Icons.help_outline, color: Colors.black54),
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HelpPage(),
+                  ));
+            }),
+      ],
+    );
+  }
+}

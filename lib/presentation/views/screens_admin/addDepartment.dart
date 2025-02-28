@@ -30,16 +30,16 @@ class AddDepartmentScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Department Name Field
               Text(
                 'Department Name',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8),
+              // Department Name Field
               TextFormField(
                 controller: _departmentNameController,
                 decoration: InputDecoration(
-                  hintText: 'Enter Department Name',
+                  labelText: 'Department Name',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
@@ -49,27 +49,8 @@ class AddDepartmentScreen extends StatelessWidget {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
-
-              // Department ID Field
-              Text(
-                'Department ID',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
               SizedBox(height: 8),
-              TextFormField(
-                controller: _departmentIdController,
-                decoration: InputDecoration(
-                  hintText: 'Enter Department ID',
-                  border: OutlineInputBorder(),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter department ID';
-                  }
-                  return null;
-                },
-              ),
+
               SizedBox(height: 20),
 
               // College Field
@@ -92,10 +73,41 @@ class AddDepartmentScreen extends StatelessWidget {
                 },
               ),
               SizedBox(height: 20),
-
+              SizedBox(height: 8),
+              Text(
+                'Head of Department',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              DropdownButtonFormField<String>(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                hint: Text('Select Head of Department'),
+                items: ['Naeem', 'Malak', 'Ayman'].map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please select head of department';
+                  }
+                  return null;
+                },
+                onChanged: (newValue) {
+                  // Handle change
+                },
+              ),
+              SizedBox(height: 20),
               // Add Department Button
               Center(
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        WidgetStateProperty.all<Color>(Colors.blue[900]!),
+                  ),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       // If the form is valid, proceed to add the department
@@ -120,7 +132,13 @@ class AddDepartmentScreen extends StatelessWidget {
                       _collegeController.clear();
                     }
                   },
-                  child: Text('Add Department'),
+                  child: Text(
+                    'Add Department',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
                 ),
               ),
             ],

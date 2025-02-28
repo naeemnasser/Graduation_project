@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../home/homescreen.dart';
+import '../../../item/app_bar_items.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -20,7 +20,10 @@ class FollowUpTableScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBarWidget(),
+      appBar: AppBarWidget(
+        title: 'Folow up',
+        imagePath: 'assets/advisorylogostroke.png',
+      ),
       body: Column(
         children: [
           HeaderSection(),
