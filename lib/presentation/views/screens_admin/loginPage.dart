@@ -1,13 +1,15 @@
 import 'package:adaa/presentation/views/follow_up/follow_up_table.dart';
 import 'package:adaa/presentation/views/home/homescreen.dart';
 import 'package:adaa/presentation/views/instructor_screens/instructor_table.dart';
-import 'package:adaa/presentation/views/financial_ffairs/financial_ffairs_view.dart';
+import 'package:adaa/presentation/views/financial_ffairs/details_page.dart';
 import 'package:adaa/presentation/views/screens_admin/adminpage.dart';
 import 'package:adaa/presentation/views/screens_student/scheduled_classes_screen.dart';
 import 'package:adaa/presentation/views/student_affairs/Aplications.dart';
 
 import 'package:flutter/material.dart';
 
+import '../financial_ffairs/Manger.dart';
+import '../financial_ffairs/petition_receipt_view.dart';
 import '../screens_advisor/semester_info.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -71,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // Navigate to Advisor Home Screen
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => FinancialAffairsView()),
+        MaterialPageRoute(builder: (context) => DetailsPage()),
       );
     } else if (_emailController.text == "follow" &&
         _passwordController.text == "1234") {

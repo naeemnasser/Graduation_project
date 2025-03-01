@@ -2,10 +2,10 @@ import 'package:adaa/presentation/views/profile/personal_profile.dart';
 import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
-import 'financial_ffairs_view.dart';
+import 'details_page.dart';
 
-class TuitionReceiptView extends StatelessWidget {
-  const TuitionReceiptView({super.key});
+class petuitionReceiptView extends StatelessWidget {
+  const petuitionReceiptView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class TuitionReceiptView extends StatelessWidget {
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => FinancialAffairsView()),
+              MaterialPageRoute(builder: (context) => DetailsPage()),
             );
           },
         ),
@@ -91,7 +91,7 @@ class TuitionReceiptView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'Tuition Receipt',
+            'petuition Receipt',
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 20),

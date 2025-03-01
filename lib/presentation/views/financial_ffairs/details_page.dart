@@ -1,13 +1,15 @@
 import 'package:adaa/core/custom_text_filed.dart';
 import 'package:adaa/presentation/views/financial_ffairs/petition_receipt_view.dart';
+import 'package:adaa/presentation/views/financial_ffairs/petition_request.dart';
 import 'package:adaa/presentation/views/profile/personal_profile.dart';
 import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
 import '../home/homescreen.dart';
+import 'Manger.dart';
 
-class FinancialAffairsView extends StatelessWidget {
-  const FinancialAffairsView({super.key});
+class DetailsPage extends StatelessWidget {
+  const DetailsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +35,39 @@ class FinancialAffairsView extends StatelessWidget {
               width: 20,
             ),
             Text(
-              'Petition Reequest',
+              'Petition Request',
               style: TextStyle(color: Colors.grey),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => FinancialStatisticsPage()),
+                );
+              },
+              child: Text(
+                'Manger',
+                style: TextStyle(color: Colors.grey),
+              ),
+            ),
+            SizedBox(
+              width: 10,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => PetitionForm()),
+                );
+              },
+              child: Text(
+                'petition Request',
+                style: TextStyle(color: Colors.grey),
+              ),
             ),
           ],
         ),
@@ -115,7 +148,7 @@ class FinancialAffairsView extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => TuitionReceiptView()));
+                          builder: (context) => petuitionReceiptView()));
                 },
                 child: Container(
                   padding: EdgeInsets.all(5),

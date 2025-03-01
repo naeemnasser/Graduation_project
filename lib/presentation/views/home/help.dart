@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../../../item/app_bar_items.dart';
 
 class HelpPage extends StatelessWidget {
   const HelpPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,110 +14,111 @@ class HelpPage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Center(
-              // Center the Text.rich widget
-              child: Padding(
-                // Add padding to the top
-                padding: const EdgeInsets.only(top: 16.0),
-                child: Text.rich(
+            Text.rich(
+              TextSpan(
+                children: [
                   TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'FAQs\n',
-                        style: TextStyle(
-                            fontSize: 28, fontWeight: FontWeight.bold),
-                      ),
-                      TextSpan(
-                        text: 'AI-Driven Academic Advisor Platform',
-                        style: TextStyle(fontSize: 15, color: Colors.grey),
-                      ),
-                    ],
+                    text: 'FAQs\n',
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                   ),
-                  textAlign: TextAlign.center,
-                ),
+                  TextSpan(
+                    text: 'AI-Driven Academic Advisor Platform',
+                    style: TextStyle(fontSize: 15, color: Colors.grey),
+                  ),
+                ],
               ),
-            ),
-            SizedBox(
-              height: 22,
+              textAlign: TextAlign.center,
             ),
             Row(
               children: [
-                Expanded(
-                  flex: 3, // Increase the flex value to give more width
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Card(
-                      elevation: 3.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: SizedBox(
-                        // Set a fixed width for the Card widget
-                        height: 500,
-                        // Define a height for the ListView
-                        child: ListView(
-                          children: [
-                            const SizedBox(height: 16),
-                            FAQSection(
-                                title: "What is ADAAP?",
-                                content:
-                                    "ADAAP is an AI-driven platform designed to assist students and advisors in academic planning by optimizing course selection, scheduling, and enrollment processes."),
-                            FAQSection(
-                                title: "Who can use ADAAP?",
-                                content:
-                                    "Students, advisors, university administrators, financial officers, and student affairs personnel can access and use the system."),
-                            FAQSection(
-                                title: "How do I log into the system?",
-                                content:
-                                    "Users can log in using their university credentials. If you experience issues, contact technical support."),
-                            FAQSection(
-                                title: "Course Selection & Scheduling",
-                                content:
-                                    "How does ADAAP recommend courses?\nThe platform analyzes academic history, degree requirements, and student preferences to suggest the best courses.\n\nCan I modify my recommended schedule?\nYes, students can make adjustments, but changes must comply with credit hour limits and prerequisite requirements.\n\nWhat happens if a class is full?\nADAAP suggests alternative courses or notifies students when a seat becomes available."),
-                            FAQSection(
-                                title: "Enrollment & Fees",
-                                content:
-                                    "Check with the university for detailed enrollment and fee structures."),
-                          ],
-                        ),
-                      ),
+                // Contact Card moved to top
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    SizedBox(
+                      width: 33,
                     ),
-                  ),
-                ),
-                SizedBox(
-                  width: 100,
-                  // Adjust the width to balance the layout
-                ),
-                Card(
-                  elevation: 3.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  child: Container(
-                    width: 300,
-                    color: Colors.grey[200],
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text("Contact Us",
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold)),
-                        SizedBox(height: 10),
-                        ContactDetail(
-                            icon: Icons.location_on, text: "Mokattam, Cairo"),
-                        ContactDetail(icon: Icons.phone, text: "16997"),
-                        ContactDetail(
-                            icon: Icons.email, text: "info@mti.edu.eg"),
-                        ContactDetail(
-                            icon: Icons.school, text: "MTI University"),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      // crossAxisAlignment: CrossAxisAlignment.,
+                      children: [
+                        SizedBox(
+                          width: 900,
+                          height: 550,
+                          child: Card(
+                            elevation: 3.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            child: ListView(
+                              children: [
+                                const SizedBox(height: 16),
+                                FAQSection(
+                                    title: "What is ADAAP?",
+                                    content:
+                                        "ADAAP is an AI-driven platform designed to assist students and advisors in academic planning by optimizing course selection, scheduling, and enrollment processes."),
+                                FAQSection(
+                                    title: "Who can use ADAAP?",
+                                    content:
+                                        "Students, advisors, university administrators, financial officers, and student affairs personnel can access and use the system."),
+                                FAQSection(
+                                    title: "How do I log into the system?",
+                                    content:
+                                        "Users can log in using their university credentials. If you experience issues, contact technical support."),
+                                FAQSection(
+                                    title: "Course Selection & Scheduling",
+                                    content:
+                                        "How does ADAAP recommend courses?\nThe platform analyzes academic history, degree requirements, and student preferences to suggest the best courses.\n\nCan I modify my recommended schedule?\nYes, students can make adjustments, but changes must comply with credit hour limits and prerequisite requirements.\n\nWhat happens if a class is full?\nADAAP suggests alternative courses or notifies students when a seat becomes available."),
+                                FAQSection(
+                                    title: "Enrollment & Fees",
+                                    content:
+                                        "Check with the university for detailed enrollment and fee structures."),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                ),
-                SizedBox(
-                  width: 20,
-                  height: 500,
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Card(
+                          elevation: 3.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Container(
+                            width: 300,
+                            color: Colors.grey[200],
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text("Contact Us",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold)),
+                                SizedBox(height: 10),
+                                ContactDetail(
+                                    icon: Icons.location_on,
+                                    text: "Mokattam, Cairo"),
+                                ContactDetail(icon: Icons.phone, text: "16997"),
+                                ContactDetail(
+                                    icon: Icons.email, text: "info@mti.edu.eg"),
+                                ContactDetail(
+                                    icon: Icons.school, text: "MTI University"),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 22,
+                    )
+                  ],
                 ),
               ],
             ),
@@ -133,9 +132,7 @@ class HelpPage extends StatelessWidget {
 class FAQSection extends StatelessWidget {
   final String title;
   final String content;
-
   const FAQSection({super.key, required this.title, required this.content});
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -158,9 +155,7 @@ class FAQSection extends StatelessWidget {
 class ContactDetail extends StatelessWidget {
   final IconData icon;
   final String text;
-
   const ContactDetail({super.key, required this.icon, required this.text});
-
   @override
   Widget build(BuildContext context) {
     return Padding(
