@@ -1,5 +1,6 @@
-import 'package:adaa/item/app_bar_items.dart';
+import 'package:adaa/item/app_bar_items_updated.dart';
 import 'package:adaa/presentation/views/home/Applicationform..dart';
+import 'package:adaa/presentation/views/financial_ffairs/financial_dashboard.dart';
 
 import 'package:flutter/material.dart';
 
@@ -137,25 +138,31 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 40),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ApplicationScreen()),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue[800],
-                        padding:
-                            EdgeInsets.symmetric(vertical: 12, horizontal: 32),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8)),
-                      ),
-                      child: Text(
-                        'Apply',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ApplicationScreen()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue[800],
+                            padding: EdgeInsets.symmetric(
+                                vertical: 12, horizontal: 32),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                          ),
+                          child: Text(
+                            'Apply',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
+                        SizedBox(width: 20),
+                      ],
                     ),
                   ],
                 ),

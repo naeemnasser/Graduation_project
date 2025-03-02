@@ -1,311 +1,460 @@
-import 'package:adaa/presentation/views/profile/personal_profile.dart';
-import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
+import 'package:adaa/item/app_bar_items_updated.dart';
+import 'package:adaa/presentation/views/financial_ffairs/financial_dashboard.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-import 'details_page.dart';
+class petitionReceiptView extends StatefulWidget {
+  const petitionReceiptView({super.key});
 
-class petuitionReceiptView extends StatelessWidget {
-  const petuitionReceiptView({super.key});
+  @override
+  _petitionReceiptViewState createState() => _petitionReceiptViewState();
+}
+
+class _petitionReceiptViewState extends State<petitionReceiptView> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _receiptNoController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
+  final TextEditingController _valueForController = TextEditingController();
+  final TextEditingController _paymentDateController = TextEditingController();
+  final TextEditingController _dueDateController = TextEditingController();
+  final TextEditingController _paymentTypeController = TextEditingController();
+  final TextEditingController _studentNameController = TextEditingController();
+  final TextEditingController _levelController = TextEditingController();
+  final TextEditingController _registrationNoController = TextEditingController();
+  final TextEditingController _employeeNameController = TextEditingController();
+  final TextEditingController _semesterController = TextEditingController();
+  final TextEditingController _departmentController = TextEditingController();
+  final TextEditingController _decisionController = TextEditingController();
+  final TextEditingController _coursesCountController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    // Set default date to today
+    _paymentDateController.text = DateFormat('dd/MM/yyyy').format(DateTime.now());
+    _dueDateController.text = DateFormat('dd/MM/yyyy').format(DateTime.now().add(Duration(days: 30)));
+    
+    // Set some default values for demonstration
+    _receiptNoController.text = '10045';
+    _amountController.text = '5000';
+    _valueForController.text = 'Tuition fees - Fall Semester';
+    _paymentTypeController.text = 'Cash';
+    _studentNameController.text = 'Ahmed Mohamed';
+    _levelController.text = 'Level 3';
+    _registrationNoController.text = 'REG2025001';
+    _employeeNameController.text = 'Sara Hassan';
+    _semesterController.text = 'Fall';
+    _departmentController.text = 'Computer Science';
+    _coursesCountController.text = '3';
+  }
+
+  Future<void> _pickDate(BuildContext context, TextEditingController controller) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+
+    if (pickedDate != null) {
+      setState(() {
+        controller.text = DateFormat('dd/MM/yyyy').format(pickedDate);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => DetailsPage()),
-            );
-          },
-        ),
-        backgroundColor: const Color.fromARGB(255, 192, 233, 243),
-        // leading: Image.asset('assets/image.png'),
-        title: Row(
-          children: [
-            Text(
-              'Paymant',
-              style: TextStyle(color: Colors.black),
-            ),
-            SizedBox(
-              width: 20,
-            ),
-            Text(
-              'Petition Reequest',
-              style: TextStyle(color: Colors.grey),
-            ),
-          ],
-        ),
-        actions: [
-          Container(
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginScreen()),
-                    );
-                  },
-                  child: Text(
-                    'Logout',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 8,
-                ),
-              ],
-            ),
-          ),
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {
-              // Navigate to Notifications
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.person),
-            onPressed: () {
-              // Navigate to Profile
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
-              );
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.info_outline_rounded),
-            onPressed: () {
-              // Navigate to Profile
-            },
-          ),
-        ],
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'petuition Receipt',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 20),
-          Container(
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.only(left: 50, right: 50, top: 5, bottom: 10),
-            decoration: BoxDecoration(color: Colors.grey.shade300),
+    // Check if we're embedded in a tab or standalone
+    final bool isEmbedded = ModalRoute.of(context)?.settings.name == null;
+    
+    Widget content = SingleChildScrollView(
+      padding: EdgeInsets.all(16.0),
+      child: Form(
+        key: _formKey,
+        child: Card(
+          elevation: 4,
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(children: [
-                  Container(
-                    color: Colors.grey,
-                    padding:
-                        EdgeInsets.only(left: 5, right: 20, top: 5, bottom: 5),
-                    child: Text(
-                      "Receipt No            ",
-                    ),
+                Center(
+                  child: Text(
+                    'Petition Receipt',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(
-                    width: 350,
-                  ),
-                  Container(
-                    color: Colors.grey,
-                    padding:
-                        EdgeInsets.only(left: 5, right: 20, top: 5, bottom: 5),
-                    child: Text(
-                      "Receipt No        ",
-                    ),
-                  ),
-                  Spacer(),
-                ]),
-                Column(
+                ),
+                Divider(thickness: 1.5),
+                SizedBox(height: 10),
+                
+                Text("Financial Affairs Department",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                SizedBox(height: 15),
+                
+                // Receipt Number and Date
+                Row(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                            "___________________________________________________"),
-                        SizedBox(
-                          width: 30,
-                        ),
-                        Text(
-                          " /مبلغ وقدره",
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                            "___________________________________________________"),
-                        SizedBox(
-                          width: 30,
-                        ),
-                        Text(
-                          "/وذالك قيمته",
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(" تارخ الدفع"),
-                        SizedBox(
-                          width: 350,
-                        ),
-                        Text(
-                          "تاريخ الاستحقاق",
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          "/دفعه",
-                        ),
-                        SizedBox(
-                          width: 365,
-                        ),
-                        Text("/ اسم الطالب"),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Text(
-                          "/المستوي",
-                        ),
-                        SizedBox(
-                          width: 370,
-                        ),
-                        Text("/اسم الموظف"),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            children: [
-                              Text("توقيع الاداره الماليه"),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              Text("____________________"),
-                            ],
-                          ),
-                          SizedBox(
-                            width: 100,
-                          ),
-                          Column(
-                            children: [
-                              Text("توقيع الاداره الماليه"),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              Text("____________________"),
-                            ],
+                          Text("Receipt No"),
+                          TextFormField(
+                            controller: _receiptNoController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter receipt number';
+                              }
+                              return null;
+                            },
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 20,
+                    SizedBox(width: 20),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Date"),
+                          Container(
+                            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text(
+                              DateFormat('dd/MM/yyyy').format(DateTime.now()),
+                              style: TextStyle(fontSize: 16),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 15),
+                
+                // Student Information
+                Text("Student Information", style: TextStyle(fontWeight: FontWeight.bold)),
+                SizedBox(height: 10),
+                
+                Text("Student Name"),
+                TextFormField(
+                  controller: _studentNameController,
+                  decoration: InputDecoration(border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter student name';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 10),
+                
+                Text("Registration Number"),
+                TextFormField(
+                  controller: _registrationNoController,
+                  decoration: InputDecoration(border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter registration number';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 10),
+                
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Level"),
+                          TextFormField(
+                            controller: _levelController,
+                            decoration: InputDecoration(border: OutlineInputBorder()),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Semester"),
+                          TextFormField(
+                            controller: _semesterController,
+                            decoration: InputDecoration(border: OutlineInputBorder()),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                
+                Text("Department"),
+                TextFormField(
+                  controller: _departmentController,
+                  decoration: InputDecoration(border: OutlineInputBorder()),
+                ),
+                SizedBox(height: 15),
+                
+                // Payment Information
+                Text("Payment Information", style: TextStyle(fontWeight: FontWeight.bold)),
+                SizedBox(height: 10),
+                
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Amount (LE)"),
+                          TextFormField(
+                            controller: _amountController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              suffixText: 'LE',
+                            ),
+                            keyboardType: TextInputType.number,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter amount';
+                              }
+                              return null;
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Payment Type"),
+                          TextFormField(
+                            controller: _paymentTypeController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              hintText: 'Cash/Check/Transfer',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                
+                Text("Value For"),
+                TextFormField(
+                  controller: _valueForController,
+                  decoration: InputDecoration(border: OutlineInputBorder()),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter payment purpose';
+                    }
+                    return null;
+                  },
+                ),
+                SizedBox(height: 10),
+                
+                Row(
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Payment Date"),
+                          TextFormField(
+                            controller: _paymentDateController,
+                            readOnly: true,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              suffixIcon: IconButton(
+                                icon: Icon(Icons.calendar_today),
+                                onPressed: () => _pickDate(context, _paymentDateController),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Due Date"),
+                          TextFormField(
+                            controller: _dueDateController,
+                            readOnly: true,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(),
+                              suffixIcon: IconButton(
+                                icon: Icon(Icons.calendar_today),
+                                onPressed: () => _pickDate(context, _dueDateController),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 15),
+                
+                // Additional Information
+                Text("Additional Information", style: TextStyle(fontWeight: FontWeight.bold)),
+                SizedBox(height: 10),
+                
+                Text("Number of courses in the petition"),
+                TextFormField(
+                  controller: _coursesCountController,
+                  decoration: InputDecoration(border: OutlineInputBorder()),
+                  keyboardType: TextInputType.number,
+                ),
+                SizedBox(height: 10),
+                
+                Text("Decision"),
+                TextFormField(
+                  controller: _decisionController,
+                  maxLines: 3,
+                  decoration: InputDecoration(border: OutlineInputBorder()),
+                ),
+                SizedBox(height: 10),
+                
+                Text("Employee Name"),
+                TextFormField(
+                  controller: _employeeNameController,
+                  decoration: InputDecoration(border: OutlineInputBorder()),
+                ),
+                SizedBox(height: 20),
+                
+                // Signatures
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        Text('Financial Department Signature'),
+                        SizedBox(height: 30),
+                        Container(
+                          width: 150,
+                          height: 1,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text('Student Signature'),
+                        SizedBox(height: 30),
+                        Container(
+                          width: 150,
+                          height: 1,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                
+                // Contact Information
+                Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Call: 27272145/27272146", style: TextStyle(fontSize: 12)),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 8),
+                        height: 15,
+                        width: 1,
+                        color: Colors.grey,
+                      ),
+                      Text("info@mti.edu.eh", style: TextStyle(fontSize: 12)),
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 8),
+                        height: 15,
+                        width: 1,
+                        color: Colors.grey,
+                      ),
+                      Text("HOTLINE: 19041", style: TextStyle(fontSize: 12)),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                
+                // Action Buttons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Receipt Confirmed")),
+                          );
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white,
+                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      ),
+                      child: Text("Confirm"),
+                    ),
+                    SizedBox(width: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Printing receipt...")),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        foregroundColor: Colors.white,
+                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                      ),
+                      child: Text("Print"),
                     ),
                   ],
                 ),
               ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("call  27272145/\n27272146"),
-              Container(
-                margin: EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                ),
-                height: 50,
-                width: 1,
-                color: Colors.black,
-              ),
-              Text("info @mti.edu.eh"),
-              Container(
-                margin: EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                ),
-                height: 50,
-                width: 1,
-                color: Colors.black,
-              ),
-              Text("https://www.mti.edu.eg"),
-              Container(
-                margin: EdgeInsets.only(
-                  left: 15,
-                  right: 15,
-                ),
-                height: 50,
-                width: 1,
-                color: Colors.black,
-              ),
-              Text("19041    HOTLINE"),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  color: Colors.blue,
-                  child: Text(
-                    "Confirm",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-                SizedBox(
-                  width: 100,
-                ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  color: Colors.blue,
-                  child: Text(
-                    "Print",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
+        ),
       ),
+    );
+    
+    if (isEmbedded) {
+      return content;
+    }
+    
+    return Scaffold(
+      appBar: AppBarWidget(
+        title: 'Petition Receipt',
+        imagePath: 'assets/advisorylogostroke.png',
+        backDestination: FinancialDashboard(),
+        arrowIcon: Icon(Icons.arrow_back),
+      ),
+      body: content,
     );
   }
 }

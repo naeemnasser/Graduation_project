@@ -9,6 +9,7 @@ import 'package:adaa/presentation/views/student_affairs/Aplications.dart';
 import 'package:flutter/material.dart';
 
 import '../financial_ffairs/Manger.dart';
+import '../financial_ffairs/financial_dashboard.dart';
 import '../financial_ffairs/petition_receipt_view.dart';
 import '../screens_advisor/semester_info.dart';
 
@@ -73,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // Navigate to Advisor Home Screen
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => DetailsPage()),
+        MaterialPageRoute(builder: (context) => FinancialDashboard()),
       );
     } else if (_emailController.text == "follow" &&
         _passwordController.text == "1234") {
