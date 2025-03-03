@@ -102,19 +102,74 @@ class FinancialStatisticsPage extends StatelessWidget {
                     LineChartData(
                       titlesData: FlTitlesData(
                         leftTitles: AxisTitles(
-                            sideTitles: SideTitles(
-                          showTitles: true,
-                          reservedSize:
-                              40, // Add space between numbers and border
-                        )),
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            reservedSize: 40,
+                            getTitlesWidget: (value, meta) {
+                              return Text(
+                                value.toInt().toString(),
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
+                              );
+                            },
+                          ),
+                        ),
                         bottomTitles: AxisTitles(
-                            sideTitles: SideTitles(
-                          showTitles: true,
-                          reservedSize:
-                              40, // Add space between numbers and border
-                        )),
+                          sideTitles: SideTitles(
+                            showTitles: true,
+                            reservedSize: 30,
+                            getTitlesWidget: (value, meta) {
+                              String text = '';
+                              if (value.toInt() % 2 == 1) {
+                                return const SizedBox.shrink();
+                              }
+                              switch (value.toInt()) {
+                                case 2016:
+                                  text = '16K';
+                                  break;
+                                case 2018:
+                                  text = '18K';
+                                  break;
+                                case 2020:
+                                  text = '20K';
+                                  break;
+                                case 2022:
+                                  text = '22K';
+                                  break;
+                              }
+                              return Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Text(
+                                  text,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                        rightTitles: AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
+                        ),
+                        topTitles: AxisTitles(
+                          sideTitles: SideTitles(showTitles: false),
+                        ),
                       ),
-                      borderData: FlBorderData(show: true),
+                      borderData: FlBorderData(
+                        show: true,
+                        border: Border(
+                          bottom: BorderSide(color: Colors.black, width: 2),
+                          left: BorderSide(color: Colors.black, width: 2),
+                          right: BorderSide(color: Colors.transparent),
+                          top: BorderSide(color: Colors.transparent),
+                        ),
+                      ),
                       lineBarsData: [
                         LineChartBarData(
                           spots: [

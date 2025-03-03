@@ -1,4 +1,6 @@
 import 'package:adaa/presentation/views/screens_advisor/semester_info.dart';
+import 'package:adaa/presentation/views/screens_advisor/pages/request_course_modification.dart';
+import 'package:adaa/presentation/views/screens_advisor/pages/request_department_modification.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -6,9 +8,9 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white24,
+        backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(Icons.arrow_back, color: Colors.blue),
           onPressed: () {
             Navigator.pushReplacement(
               context,
@@ -16,17 +18,36 @@ class DashboardPage extends StatelessWidget {
             );
           },
         ),
-        elevation: 1,
+        elevation: 2,
         title: Row(
           children: [
-            Image.asset("assets/advisorylogostroke.png",
-                height: 40), // Replace with your logo
+            Image.asset("assets/advisorylogostroke.png", height: 40),
             SizedBox(width: 10),
-            Text("MTI",
-                style: TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold)),
+            Text("MTI", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
           ],
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.help_outline, color: Colors.blue),
+            onPressed: () {
+              // Show help dialog
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text('Dashboard Help'),
+                  content: Text('This page shows all courses and departments. '
+                      'You can send modification requests using the buttons below each table.'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text('OK'),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -40,6 +61,25 @@ class DashboardPage extends StatelessWidget {
                     color: Colors.blue)),
             SizedBox(height: 10),
             CourseTable(),
+            SizedBox(height: 10),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RequestCourseModification(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  side: BorderSide(color: Colors.red),
+                ),
+                child: Text("Send Request for Course modification",
+                    style: TextStyle(color: Colors.red)),
+              ),
+            ),
             SizedBox(height: 30),
             Text("Departments",
                 style: TextStyle(
@@ -48,6 +88,27 @@ class DashboardPage extends StatelessWidget {
                     color: Colors.blue)),
             SizedBox(height: 10),
             DepartmentTable(),
+            SizedBox(height: 10),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RequestDepartmentModification(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  side: BorderSide(color: Colors.red),
+                ),
+                child: Text(
+                  "Send Request for Department modification",
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -60,9 +121,18 @@ class CourseTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return Table(
       border: TableBorder.symmetric(outside: BorderSide(width: 1)),
-      columnWidths: {0: FractionColumnWidth(0.1), 1: FractionColumnWidth(0.2)},
+      columnWidths: {
+        0: FractionColumnWidth(0.1),
+        1: FractionColumnWidth(0.2),
+        2: FractionColumnWidth(0.1),
+        3: FractionColumnWidth(0.15),
+        4: FractionColumnWidth(0.15),
+        5: FractionColumnWidth(0.15),
+        6: FractionColumnWidth(0.15),
+      },
       children: [
         TableRow(
+          decoration: BoxDecoration(color: Colors.grey[200]),
           children: [
             TableCell(
                 child: Padding(
@@ -82,17 +152,17 @@ class CourseTable extends StatelessWidget {
             TableCell(
                 child: Padding(
                     padding: EdgeInsets.all(8),
-                    child: Text("Number of Lectures",
+                    child: Text("Lectures",
                         style: TextStyle(fontWeight: FontWeight.bold)))),
             TableCell(
                 child: Padding(
                     padding: EdgeInsets.all(8),
-                    child: Text("Number of Sections",
+                    child: Text("Sections",
                         style: TextStyle(fontWeight: FontWeight.bold)))),
             TableCell(
                 child: Padding(
                     padding: EdgeInsets.all(8),
-                    child: Text("Number of Hours",
+                    child: Text("Hours",
                         style: TextStyle(fontWeight: FontWeight.bold)))),
             TableCell(
                 child: Padding(
@@ -126,27 +196,67 @@ class CourseTable extends StatelessWidget {
         TableRow(
           children: [
             TableCell(
-              child: Padding(
-                padding: EdgeInsets.all(8),
-                child: Center(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      side: BorderSide(color: Colors.red),
-                    ),
-                    child: Text("Send Request for modification",
-                        style: TextStyle(color: Colors.red)),
-                  ),
-                ),
-              ),
-            ),
-            TableCell(child: Container()),
-            TableCell(child: Container()),
-            TableCell(child: Container()),
-            TableCell(child: Container()),
-            TableCell(child: Container()),
-            TableCell(child: Container()),
+                child:
+                    Padding(padding: EdgeInsets.all(8), child: Text("ENG101"))),
+            TableCell(
+                child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text("English Language 1"))),
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("1"))),
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("2"))),
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("1"))),
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("3"))),
+            TableCell(
+                child: Padding(
+                    padding: EdgeInsets.all(8), child: Text("Languages"))),
+          ],
+        ),
+        TableRow(
+          children: [
+            TableCell(
+                child: Padding(
+                    padding: EdgeInsets.all(8), child: Text("MATH201"))),
+            TableCell(
+                child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text("Advanced Mathematics"))),
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("2"))),
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("3"))),
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("2"))),
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("4"))),
+            TableCell(
+                child: Padding(
+                    padding: EdgeInsets.all(8), child: Text("Mathematics"))),
+          ],
+        ),
+        TableRow(
+          children: [
+            TableCell(
+                child:
+                    Padding(padding: EdgeInsets.all(8), child: Text("PHY101"))),
+            TableCell(
+                child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text("Physics Fundamentals"))),
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("1"))),
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("2"))),
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("2"))),
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("4"))),
+            TableCell(
+                child: Padding(
+                    padding: EdgeInsets.all(8), child: Text("Physics"))),
           ],
         ),
       ],
@@ -159,8 +269,13 @@ class DepartmentTable extends StatelessWidget {
   Widget build(BuildContext context) {
     return Table(
       border: TableBorder.symmetric(outside: BorderSide(width: 1)),
+      columnWidths: {
+        0: FractionColumnWidth(0.3),
+        1: FractionColumnWidth(0.7),
+      },
       children: [
         TableRow(
+          decoration: BoxDecoration(color: Colors.grey[200]),
           children: [
             TableCell(
                 child: Padding(
@@ -187,26 +302,32 @@ class DepartmentTable extends StatelessWidget {
         TableRow(
           children: [
             TableCell(
-              child: Padding(
-                padding: EdgeInsets.all(8),
-                child: Center(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      side: BorderSide(color: Colors.red),
-                    ),
-                    child: Text(
-                      "Send Request for modification",
-                      style: TextStyle(color: Colors.red),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+                child:
+                    Padding(padding: EdgeInsets.all(8), child: Text("MATH"))),
             TableCell(
-              child: Container(), // Empty cell to maintain table structure
-            ),
+                child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text("Mathematics Department"))),
+          ],
+        ),
+        TableRow(
+          children: [
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("ENG"))),
+            TableCell(
+                child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text("Languages Department"))),
+          ],
+        ),
+        TableRow(
+          children: [
+            TableCell(
+                child: Padding(padding: EdgeInsets.all(8), child: Text("PHY"))),
+            TableCell(
+                child: Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Text("Physics Department"))),
           ],
         ),
       ],

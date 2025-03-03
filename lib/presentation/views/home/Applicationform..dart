@@ -17,7 +17,7 @@ class ApplicationScreen extends StatelessWidget {
             );
           },
         ),
-        title: const Text('Application'),
+        title: const Text('Application For New Student'),
         centerTitle: true,
       ),
       body: Center(

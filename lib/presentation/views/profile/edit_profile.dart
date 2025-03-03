@@ -1,28 +1,68 @@
 import 'package:adaa/presentation/views/profile/personal_profile.dart';
 import 'package:flutter/material.dart';
 
-class EditProfile extends StatelessWidget {
+class EditProfile extends StatefulWidget {
+  final String initialEmail;
+  final String initialAddress;
+  final String initialPhone;
+
+  EditProfile({
+    this.initialEmail = 'naaeem.98596@edu.eg',
+    this.initialAddress = 'Cairo, Egypt',
+    this.initialPhone = '0101383464',
+  });
+
+  @override
+  _EditProfileState createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
+  late TextEditingController _emailController;
+  late TextEditingController _addressController;
+  late TextEditingController _phoneController;
+  
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController(text: widget.initialEmail);
+    _addressController = TextEditingController(text: widget.initialAddress);
+    _phoneController = TextEditingController(text: widget.initialPhone);
+  }
+  
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _addressController.dispose();
+    _phoneController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => ProfilePage()),
-            );
-          },
+        leading: Row(
+          children: [
+            IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                );
+              },
+            ),
+            IconButton(
+              icon: Icon(Icons.person),
+              onPressed: () {},
+            ),
+          ],
         ),
+        leadingWidth: 96, // Gives enough space for both icons
         title: Text('Personal Info'),
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.person),
             onPressed: () {},
           ),
           IconButton(
@@ -47,14 +87,26 @@ class EditProfile extends StatelessWidget {
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16),
-            _buildInfoField('Email:', 'naaeem.98596@edu.eg'),
-            _buildInfoField('Address:', 'Cairo, Egypt'),
-            _buildInfoField('Phone:', '0101383464'),
+            _buildInfoField('Email:', _emailController),
+            _buildInfoField('Address:', _addressController),
+            _buildInfoField('Phone:', _phoneController),
             SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Navigate back to ProfilePage and pass the edited data
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProfilePage(
+                        email: _emailController.text,
+                        address: _addressController.text,
+                        phone: _phoneController.text,
+                      ),
+                    ),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   padding: EdgeInsets.symmetric(vertical: 12),
@@ -64,7 +116,7 @@ class EditProfile extends StatelessWidget {
                   elevation: 4,
                 ),
                 child: Text(
-                  'Edit Profile',
+                  'Save Changes',
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ),
@@ -75,7 +127,7 @@ class EditProfile extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoField(String label, String value) {
+  Widget _buildInfoField(String label, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
@@ -85,8 +137,8 @@ class EditProfile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
-                TextFormField(
-                  initialValue: value,
+                TextField(
+                  controller: controller,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.grey[300],

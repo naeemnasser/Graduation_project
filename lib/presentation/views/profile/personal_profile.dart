@@ -4,6 +4,16 @@ import 'package:flutter/material.dart';
 import '../screens_admin/loginPage.dart';
 
 class ProfilePage extends StatelessWidget {
+  final String email;
+  final String address;
+  final String phone;
+
+  // Constructor with optional parameters to receive data from EditProfile
+  ProfilePage({
+    this.email = 'naeem.98596@edu.eg',
+    this.address = 'Cairo, Egypt',
+    this.phone = '01013863464',
+  });
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +37,14 @@ class ProfilePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.person),
             onPressed: () {
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()));
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => ProfilePage(
+                  email: email,
+                  address: address,
+                  phone: phone,
+                )),
+              );
             },
           ),
           IconButton(
@@ -54,15 +70,21 @@ class ProfilePage extends StatelessWidget {
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 16),
-              _buildInfoField('Email:', 'naeem.98596@edu.eg'),
-              _buildInfoField('Address:', 'Cairo, Egypt'),
-              _buildInfoField('Phone:', '01013863464'),
+              _buildInfoField('Email:', email),
+              _buildInfoField('Address:', address),
+              _buildInfoField('Phone:', phone),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => EditProfile()),
+                    MaterialPageRoute(
+                      builder: (context) => EditProfile(
+                        initialEmail: email,
+                        initialAddress: address,
+                        initialPhone: phone,
+                      ),
+                    ),
                   );
                 },
                 style: ElevatedButton.styleFrom(

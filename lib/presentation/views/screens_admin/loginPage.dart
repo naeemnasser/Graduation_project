@@ -1,16 +1,16 @@
 import 'package:adaa/presentation/views/follow_up/follow_up_table.dart';
 import 'package:adaa/presentation/views/home/homescreen.dart';
 import 'package:adaa/presentation/views/instructor_screens/instructor_table.dart';
-import 'package:adaa/presentation/views/financial_ffairs/details_page.dart';
+
 import 'package:adaa/presentation/views/screens_admin/adminpage.dart';
 import 'package:adaa/presentation/views/screens_student/scheduled_classes_screen.dart';
 import 'package:adaa/presentation/views/student_affairs/Aplications.dart';
+import 'package:adaa/presentation/views/teaching_assistant_screens/teaching_assistant_table.dart';
 
 import 'package:flutter/material.dart';
 
-import '../financial_ffairs/Manger.dart';
 import '../financial_ffairs/financial_dashboard.dart';
-import '../financial_ffairs/petition_receipt_view.dart';
+
 import '../screens_advisor/semester_info.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -75,6 +75,13 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => FinancialDashboard()),
+      );
+    } else if (_emailController.text == "TA" &&
+        _passwordController.text == "1234") {
+      // Navigate to Advisor Home Screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => TeachingAssistantTimetable()),
       );
     } else if (_emailController.text == "follow" &&
         _passwordController.text == "1234") {

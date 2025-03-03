@@ -20,7 +20,8 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
   final TextEditingController _paymentTypeController = TextEditingController();
   final TextEditingController _studentNameController = TextEditingController();
   final TextEditingController _levelController = TextEditingController();
-  final TextEditingController _registrationNoController = TextEditingController();
+  final TextEditingController _registrationNoController =
+      TextEditingController();
   final TextEditingController _employeeNameController = TextEditingController();
   final TextEditingController _semesterController = TextEditingController();
   final TextEditingController _departmentController = TextEditingController();
@@ -31,16 +32,18 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
   void initState() {
     super.initState();
     // Set default date to today
-    _paymentDateController.text = DateFormat('dd/MM/yyyy').format(DateTime.now());
-    _dueDateController.text = DateFormat('dd/MM/yyyy').format(DateTime.now().add(Duration(days: 30)));
-    
+    _paymentDateController.text =
+        DateFormat('dd/MM/yyyy').format(DateTime.now());
+    _dueDateController.text =
+        DateFormat('dd/MM/yyyy').format(DateTime.now().add(Duration(days: 30)));
+
     // Set some default values for demonstration
     _receiptNoController.text = '10045';
-    _amountController.text = '5000';
-    _valueForController.text = 'Tuition fees - Fall Semester';
+    _amountController.text = '18000';
+    _valueForController.text = 'PETuition fees - Fall Semester';
     _paymentTypeController.text = 'Cash';
-    _studentNameController.text = 'Ahmed Mohamed';
-    _levelController.text = 'Level 3';
+    _studentNameController.text = 'Naeem Nasser';
+    _levelController.text = 'Level 4';
     _registrationNoController.text = 'REG2025001';
     _employeeNameController.text = 'Sara Hassan';
     _semesterController.text = 'Fall';
@@ -48,11 +51,12 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
     _coursesCountController.text = '3';
   }
 
-  Future<void> _pickDate(BuildContext context, TextEditingController controller) async {
+  Future<void> _pickDate(
+      BuildContext context, TextEditingController controller) async {
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
+      firstDate: DateTime(1995),
       lastDate: DateTime(2101),
     );
 
@@ -67,7 +71,7 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
   Widget build(BuildContext context) {
     // Check if we're embedded in a tab or standalone
     final bool isEmbedded = ModalRoute.of(context)?.settings.name == null;
-    
+
     Widget content = SingleChildScrollView(
       padding: EdgeInsets.all(16.0),
       child: Form(
@@ -87,11 +91,11 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                 ),
                 Divider(thickness: 1.5),
                 SizedBox(height: 10),
-                
+
                 Text("Financial Affairs Department",
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 SizedBox(height: 15),
-                
+
                 // Receipt Number and Date
                 Row(
                   children: [
@@ -104,7 +108,8 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                             controller: _receiptNoController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
-                              contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 8),
                             ),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -123,7 +128,8 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                         children: [
                           Text("Date"),
                           Container(
-                            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+                            padding: EdgeInsets.symmetric(
+                                vertical: 12, horizontal: 10),
                             decoration: BoxDecoration(
                               border: Border.all(color: Colors.grey),
                               borderRadius: BorderRadius.circular(4),
@@ -139,11 +145,12 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                   ],
                 ),
                 SizedBox(height: 15),
-                
+
                 // Student Information
-                Text("Student Information", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Student Information",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 SizedBox(height: 10),
-                
+
                 Text("Student Name"),
                 TextFormField(
                   controller: _studentNameController,
@@ -156,7 +163,7 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                   },
                 ),
                 SizedBox(height: 10),
-                
+
                 Text("Registration Number"),
                 TextFormField(
                   controller: _registrationNoController,
@@ -169,7 +176,7 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                   },
                 ),
                 SizedBox(height: 10),
-                
+
                 Row(
                   children: [
                     Expanded(
@@ -179,7 +186,8 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                           Text("Level"),
                           TextFormField(
                             controller: _levelController,
-                            decoration: InputDecoration(border: OutlineInputBorder()),
+                            decoration:
+                                InputDecoration(border: OutlineInputBorder()),
                           ),
                         ],
                       ),
@@ -192,7 +200,8 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                           Text("Semester"),
                           TextFormField(
                             controller: _semesterController,
-                            decoration: InputDecoration(border: OutlineInputBorder()),
+                            decoration:
+                                InputDecoration(border: OutlineInputBorder()),
                           ),
                         ],
                       ),
@@ -200,18 +209,19 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                   ],
                 ),
                 SizedBox(height: 10),
-                
+
                 Text("Department"),
                 TextFormField(
                   controller: _departmentController,
                   decoration: InputDecoration(border: OutlineInputBorder()),
                 ),
                 SizedBox(height: 15),
-                
+
                 // Payment Information
-                Text("Payment Information", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Payment Information",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 SizedBox(height: 10),
-                
+
                 Row(
                   children: [
                     Expanded(
@@ -255,7 +265,7 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                   ],
                 ),
                 SizedBox(height: 10),
-                
+
                 Text("Value For"),
                 TextFormField(
                   controller: _valueForController,
@@ -268,7 +278,7 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                   },
                 ),
                 SizedBox(height: 10),
-                
+
                 Row(
                   children: [
                     Expanded(
@@ -283,7 +293,8 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                               border: OutlineInputBorder(),
                               suffixIcon: IconButton(
                                 icon: Icon(Icons.calendar_today),
-                                onPressed: () => _pickDate(context, _paymentDateController),
+                                onPressed: () =>
+                                    _pickDate(context, _paymentDateController),
                               ),
                             ),
                           ),
@@ -303,7 +314,8 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                               border: OutlineInputBorder(),
                               suffixIcon: IconButton(
                                 icon: Icon(Icons.calendar_today),
-                                onPressed: () => _pickDate(context, _dueDateController),
+                                onPressed: () =>
+                                    _pickDate(context, _dueDateController),
                               ),
                             ),
                           ),
@@ -313,11 +325,12 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                   ],
                 ),
                 SizedBox(height: 15),
-                
+
                 // Additional Information
-                Text("Additional Information", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text("Additional Information",
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 SizedBox(height: 10),
-                
+
                 Text("Number of courses in the petition"),
                 TextFormField(
                   controller: _coursesCountController,
@@ -325,7 +338,7 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                   keyboardType: TextInputType.number,
                 ),
                 SizedBox(height: 10),
-                
+
                 Text("Decision"),
                 TextFormField(
                   controller: _decisionController,
@@ -333,14 +346,14 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                   decoration: InputDecoration(border: OutlineInputBorder()),
                 ),
                 SizedBox(height: 10),
-                
+
                 Text("Employee Name"),
                 TextFormField(
                   controller: _employeeNameController,
                   decoration: InputDecoration(border: OutlineInputBorder()),
                 ),
                 SizedBox(height: 20),
-                
+
                 // Signatures
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -370,7 +383,7 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                   ],
                 ),
                 SizedBox(height: 20),
-                
+
                 // Contact Information
                 Container(
                   padding: EdgeInsets.all(8),
@@ -381,7 +394,8 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Call: 27272145/27272146", style: TextStyle(fontSize: 12)),
+                      Text("Call: 27272145/27272146",
+                          style: TextStyle(fontSize: 12)),
                       Container(
                         margin: EdgeInsets.symmetric(horizontal: 8),
                         height: 15,
@@ -400,7 +414,7 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                   ),
                 ),
                 SizedBox(height: 20),
-                
+
                 // Action Buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -416,7 +430,8 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                       ),
                       child: Text("Confirm"),
                     ),
@@ -430,7 +445,8 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
                         foregroundColor: Colors.white,
-                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                       ),
                       child: Text("Print"),
                     ),
@@ -442,11 +458,11 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
         ),
       ),
     );
-    
+
     if (isEmbedded) {
       return content;
     }
-    
+
     return Scaffold(
       appBar: AppBarWidget(
         title: 'Petition Receipt',

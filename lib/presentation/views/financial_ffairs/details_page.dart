@@ -1,10 +1,7 @@
 import 'package:adaa/core/custom_text_filed.dart';
-import 'package:adaa/item/app_bar_items_updated.dart';
-import 'package:adaa/presentation/views/financial_ffairs/petition_receipt_view.dart';
+import 'package:adaa/presentation/views/financial_ffairs/financial_dashboard.dart';
 
 import 'package:flutter/material.dart';
-
-import 'financial_dashboard.dart';
 
 class DetailsPage extends StatelessWidget {
   const DetailsPage({super.key});
@@ -12,12 +9,6 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarWidget(
-        title: 'Payment Management',
-        imagePath: 'assets/advisorylogostroke.png',
-        backDestination: FinancialDashboard(),
-        arrowIcon: Icon(Icons.arrow_back),
-      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 50, top: 150, right: 50),
         child: Column(
@@ -41,25 +32,29 @@ class DetailsPage extends StatelessWidget {
               height: 25,
             ),
             Center(
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
+              child: Container(
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.green),
+                ),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => petitionReceiptView()));
-                },
-                child: Container(
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.green),
-                  ),
+                        builder: (context) => FinancialDashboard(),
+                        settings:
+                            RouteSettings(arguments: {'selectedIndex': 1}),
+                      ),
+                    );
+                  },
                   child: Text(
                     "Search",
                     style: TextStyle(color: Colors.green),
                   ),
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
