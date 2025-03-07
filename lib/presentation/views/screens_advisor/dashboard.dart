@@ -1,3 +1,4 @@
+import 'package:adaa/presentation/views/screens_advisor/pages/result.dart';
 import 'package:adaa/presentation/views/screens_advisor/semester_info.dart';
 import 'package:adaa/presentation/views/screens_advisor/pages/request_course_modification.dart';
 import 'package:adaa/presentation/views/screens_advisor/pages/request_department_modification.dart';
@@ -23,7 +24,9 @@ class DashboardPage extends StatelessWidget {
           children: [
             Image.asset("assets/advisorylogostroke.png", height: 40),
             SizedBox(width: 10),
-            Text("MTI", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+            Text("MTI",
+                style: TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold)),
           ],
         ),
         actions: [
@@ -106,6 +109,26 @@ class DashboardPage extends StatelessWidget {
                 child: Text(
                   "Send Request for Department modification",
                   style: TextStyle(color: Colors.red),
+                ),
+              ),
+            ),
+            // New TextButton that navigates to AdvisorResult page
+            SizedBox(height: 20),
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AdvisorResult()),
+                  );
+                },
+                child: Text(
+                  "View Advisor Results",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
             ),

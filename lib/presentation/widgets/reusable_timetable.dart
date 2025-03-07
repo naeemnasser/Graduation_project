@@ -7,8 +7,7 @@ class TimetableEntry {
   final String courseName;
   final String type;
   final String place;
-  final String oddTime;
-  final String evenTime;
+  final String Time;
 
   TimetableEntry({
     required this.day,
@@ -16,8 +15,7 @@ class TimetableEntry {
     required this.courseName,
     required this.type,
     required this.place,
-    required this.oddTime,
-    required this.evenTime,
+    required this.Time,
   });
 }
 
@@ -27,7 +25,7 @@ class ReusableTimetable extends StatelessWidget {
   final String title;
   final String personRole; // "Instructor" or "T.A"
   final String personName;
-  
+
   const ReusableTimetable({
     super.key,
     required this.timetable,
@@ -63,7 +61,6 @@ class ReusableTimetable extends StatelessWidget {
                 3: FractionColumnWidth(0.05), // Type
                 4: FractionColumnWidth(0.10), // Place
                 5: FractionColumnWidth(0.17), // Odd Time
-                6: FractionColumnWidth(0.17), // Even Time
               },
               children: [
                 // Table Header with Grey Background
@@ -75,8 +72,7 @@ class ReusableTimetable extends StatelessWidget {
                     _tableCell("Course", bold: true),
                     _tableCell("Type", bold: true),
                     _tableCell("Place", bold: true),
-                    _tableCell("Odd Time", bold: true),
-                    _tableCell("Even Time", bold: true),
+                    _tableCell("Time", bold: true),
                   ],
                 ),
                 // Table Data
@@ -88,8 +84,7 @@ class ReusableTimetable extends StatelessWidget {
                       _tableCell(entry.courseName),
                       _tableCell(entry.type),
                       _tableCell(entry.place),
-                      _tableCell(entry.oddTime),
-                      _tableCell(entry.evenTime),
+                      _tableCell(entry.Time),
                     ],
                   ),
               ],

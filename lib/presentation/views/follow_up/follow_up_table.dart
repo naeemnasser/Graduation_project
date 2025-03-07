@@ -179,19 +179,43 @@ class FollowUpTable extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold))),
             DataColumn(
                 label:
+                    Text('1', style: TextStyle(fontWeight: FontWeight.bold))),
+            DataColumn(
+                label:
                     Text('2', style: TextStyle(fontWeight: FontWeight.bold))),
+            DataColumn(
+                label:
+                    Text('3', style: TextStyle(fontWeight: FontWeight.bold))),
             DataColumn(
                 label:
                     Text('4', style: TextStyle(fontWeight: FontWeight.bold))),
             DataColumn(
                 label:
+                    Text('5', style: TextStyle(fontWeight: FontWeight.bold))),
+            DataColumn(
+                label:
+                    Text('6', style: TextStyle(fontWeight: FontWeight.bold))),
+            DataColumn(
+                label:
+                    Text('7', style: TextStyle(fontWeight: FontWeight.bold))),
+            DataColumn(
+                label:
                     Text('8', style: TextStyle(fontWeight: FontWeight.bold))),
+            DataColumn(
+                label:
+                    Text('9', style: TextStyle(fontWeight: FontWeight.bold))),
             DataColumn(
                 label:
                     Text('10', style: TextStyle(fontWeight: FontWeight.bold))),
             DataColumn(
                 label:
+                    Text('11', style: TextStyle(fontWeight: FontWeight.bold))),
+            DataColumn(
+                label:
                     Text('12', style: TextStyle(fontWeight: FontWeight.bold))),
+            DataColumn(
+                label:
+                    Text('13', style: TextStyle(fontWeight: FontWeight.bold))),
             DataColumn(
                 label:
                     Text('14', style: TextStyle(fontWeight: FontWeight.bold))),
@@ -200,8 +224,8 @@ class FollowUpTable extends StatelessWidget {
             (entry) {
               print('Building row ${entry.key}');
               return DataRow(
-                color: MaterialStateProperty.resolveWith<Color?>(
-                  (Set<MaterialState> states) {
+                color: WidgetStateProperty.resolveWith<Color?>(
+                  (Set<WidgetState> states) {
                     if (entry.key % 2 == 0) {
                       return Colors.grey.withOpacity(0.3); // even rows
                     }

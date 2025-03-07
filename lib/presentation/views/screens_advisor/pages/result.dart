@@ -116,7 +116,7 @@ class AdvisorResult extends StatelessWidget {
 
   Widget _buildResultsTable(Map<String, dynamic> data) {
     final courses = data['courses'] as List;
-    
+
     return Card(
       elevation: 4,
       child: Padding(
@@ -166,14 +166,16 @@ class AdvisorResult extends StatelessWidget {
     final courses = data['courses'] as List;
     double totalCredits = 0;
     double totalPoints = 0;
-    
+
     for (var course in courses) {
-      totalCredits += course['credits'] as double;
-      totalPoints += (course['points'] as double) * (course['credits'] as double);
+      final credits = (course['credits'] as num).toDouble();
+      final points = (course['points'] as num).toDouble();
+      totalCredits += credits;
+      totalPoints += points * credits;
     }
-    
+
     final gpa = totalPoints / totalCredits;
-    
+
     return Card(
       elevation: 4,
       child: Padding(
