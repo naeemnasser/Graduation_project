@@ -20,7 +20,7 @@ class _EditProfileState extends State<EditProfile> {
   late TextEditingController _emailController;
   late TextEditingController _addressController;
   late TextEditingController _phoneController;
-  
+
   @override
   void initState() {
     super.initState();
@@ -28,7 +28,7 @@ class _EditProfileState extends State<EditProfile> {
     _addressController = TextEditingController(text: widget.initialAddress);
     _phoneController = TextEditingController(text: widget.initialPhone);
   }
-  
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -83,7 +83,7 @@ class _EditProfileState extends State<EditProfile> {
             ),
             SizedBox(height: 16),
             Text(
-              'Hello, Naeem',
+              'Hello, Ayman',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16),

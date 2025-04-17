@@ -124,28 +124,28 @@ class _SemesterInfoPageState extends State<SemesterInfoPage> {
                       Text('Welcome!',
                           style: TextStyle(
                               fontSize: 32, fontWeight: FontWeight.bold)),
-                      SizedBox(height: 20),
-                      DropdownButtonFormField<String>(
-                        decoration: InputDecoration(
-                          labelText: 'Choose List',
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 16),
-                        ),
-                        value: selectedList,
-                        items: ['2013', '2016', '2020'].map((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (value) {
-                          setState(() {
-                            selectedList = value;
-                          });
-                        },
-                      ),
-                      SizedBox(height: 16),
+
+                      // DropdownButtonFormField<String>(
+                      //   decoration: InputDecoration(
+                      //     labelText: 'Choose List',
+                      //     border: OutlineInputBorder(),
+                      //     contentPadding: EdgeInsets.symmetric(
+                      //         horizontal: 12, vertical: 16),
+                      //   ),
+                      //   value: selectedList,
+                      //   items: ['2013', '2016', '2020'].map((String value) {
+                      //     return DropdownMenuItem<String>(
+                      //       value: value,
+                      //       child: Text(value),
+                      //     );
+                      //   }).toList(),
+                      //   onChanged: (value) {
+                      //     setState(() {
+                      //       selectedList = value;
+                      //     });
+                      //   },
+                      // ),
+                      // SizedBox(height: 16),
                       DropdownButtonFormField<String>(
                         decoration: InputDecoration(
                           labelText: 'Choose Semester',
@@ -154,7 +154,7 @@ class _SemesterInfoPageState extends State<SemesterInfoPage> {
                               horizontal: 12, vertical: 16),
                         ),
                         value: selectedSemester,
-                        items: ['Fall', 'Spring', 'Summer'].map((String value) {
+                        items: ['Fall', 'Spring'].map((String value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(value),
@@ -166,61 +166,18 @@ class _SemesterInfoPageState extends State<SemesterInfoPage> {
                           });
                         },
                       ),
-                      SizedBox(height: 16),
-                      DropdownButtonFormField<String>(
-                        decoration: InputDecoration(
-                          labelText: 'Choose Level',
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 16),
-                        ),
-                        value: selectedLevel,
-                        items: ['1', '2', '3', '4'].map((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (value) {
-                          setState(() {
-                            selectedLevel = value;
-                          });
-                        },
-                      ),
-                      SizedBox(height: 16),
-                      Text('Choose Course',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold)),
-                      SizedBox(height: 8),
-                      Expanded(
-                        child: ListView(
-                          children: courseSelections.keys.map((String course) {
-                            return CheckboxListTile(
-                              title: Text(course),
-                              value: courseSelections[course],
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  courseSelections[course] = value ?? false;
-                                });
-                              },
-                              controlAffinity: ListTileControlAffinity.leading,
-                              activeColor: Color(0xFF0d6efd),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                      SizedBox(height: 16),
+                      SizedBox(height: 20),
+
                       Center(
                         child: ElevatedButton(
-                          onPressed: _anyCoursesSelected()
-                              ? _navigateToSchedule
-                              : null,
+                          onPressed: () {
+                            _navigateToSchedule(); // Navigate without requiring selected courses
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor:
                                 Color(0xFF0d6efd), // Custom blue color
                             padding: EdgeInsets.symmetric(
-                                horizontal: 44,
-                                vertical: 16), // Custom padding for button
+                                horizontal: 44, vertical: 16), // Custom padding
                             disabledBackgroundColor: Colors.grey,
                           ),
                           child: Text('Next',
@@ -271,27 +228,14 @@ class _SemesterInfoPageState extends State<SemesterInfoPage> {
     );
   }
 
-  bool _anyCoursesSelected() {
-    return courseSelections.values.any((selected) => selected);
-  }
-
   void _navigateToSchedule() {
-    List<String> selectedCourses = [];
-    courseSelections.forEach((course, selected) {
-      if (selected) {
-        selectedCourses.add(course);
-      }
-    });
-
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => DefaultScheduleScreen(
-          level: 4, semester: 2,
-          // selectedCourses: selectedCourses,
-          // selectedList: selectedList,
-          // selectedLevel: selectedLevel,
-          // selectedSemester: selectedSemester,
+          level: 4,
+          semester: 2,
+          // Pass other parameters if needed
         ),
       ),
     );

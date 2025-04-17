@@ -85,7 +85,7 @@ class _petitionReceiptViewState extends State<petitionReceiptView> {
               children: [
                 Center(
                   child: Text(
-                    'Petition Receipt',
+                    'tution Receipt',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),

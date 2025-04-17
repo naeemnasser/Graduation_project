@@ -44,45 +44,104 @@ class ScheduledClassesScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // Choose Level Dropdown
-            Center(
-              child: Text(
-                'Level...',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 22.0), // Add padding to the left
+                  child: Image.asset(
+                    'assets/advisorylogostroke.png',
+                    width: 140,
+                    height: 170,
+                  ),
+                ),
+                Text(
+                  'Scheduled Classes',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  width: 70,
+                ),
+                Text(
+                  'spring 2025',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      right: 22.0), // Add padding to the left
+                  child: Image.asset(
+                    'assets/image.png',
+                    width: 140,
+                    height: 170,
+                  ),
+                ),
+              ],
+            ),
+            SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // Choose Level Dropdown
+                  Center(
+                    child: Text(
+                      'Level one',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  buildDaySection('Sunday', [
+                    [
+                      'Linear Algebra 1',
+                      'Dr. Ahmed',
+                      'C2.1',
+                      'Lecture',
+                      '10:00-12:00'
+                    ],
+                    ['Math 1', 'Dr. Salma', 'C2.2', 'Lecture', '12:00-2:00'],
+                    ['Linear Algebra 1', 'Dr. Alaa', 'L1', 'L', '12:00-2:00'],
+                  ]),
+                  buildDaySection('Monday', [
+                    ['dsp', 'Dr. said', 'L3', 'Lecture', '1:00-2:15'],
+                    ['Math1', 'Dr. Salma', 'Sec 1', 'S', '10:00-12:00'],
+                    ['Math1', 'Dr. Salma', 'Sec 5', 'S', '12:00-2:00'],
+                  ]),
+                  buildDaySection('Tuesday', [
+                    ['Math1', 'Dr. Salma', 'Sec 1', 'S', '10:00-12:00'],
+                  ]),
+                  buildDaySection('Wednesday', [
+                    ['AI', 'Dr. Mohamed', 'L3', 'Lecture', '10:00-12:00'],
+                    [
+                      'Operating Systems',
+                      'Dr. Sarah',
+                      'L2',
+                      'Lecture',
+                      '12:00-2:00'
+                    ],
+                    ['Networks', 'Dr. John', 'L1', 'Lecture', '2:00-4:00'],
+                  ]),
+                  buildDaySection('Thursday', [
+                    [
+                      'Databases 1',
+                      'Dr. Mohamed',
+                      'L3',
+                      'Lecture',
+                      '10:00-12:00'
+                    ],
+                  ]),
+                ],
               ),
             ),
-            SizedBox(height: 16),
-            buildDaySection('Sunday', [
-              [
-                'Linear Algebra 1',
-                'Dr. Ahmed',
-                'C2.1',
-                'Lecture',
-                '10:00-12:00'
-              ],
-              ['Math 1', 'Dr. Salma', 'C2.2', 'Lecture', '12:00-2:00'],
-              ['Linear Algebra 1', 'Dr. Alaa', 'L1', 'L', '12:00-2:00'],
-            ]),
-            buildDaySection('Monday', [
-              ['dsp', 'Dr. said', 'L3', 'Lecture', '1:00-2:15'],
-              ['Math1', 'Dr. Salma', 'Sec 1', 'S', '10:00-12:00'],
-              ['Math1', 'Dr. Salma', 'Sec 5', 'S', '12:00-2:00'],
-            ]),
-            buildDaySection('Tuesday', [
-              ['Math1', 'Dr. Salma', 'Sec 1', 'S', '10:00-12:00'],
-            ]),
-            buildDaySection('Wednesday', [
-              ['AI', 'Dr. Mohamed', 'L3', 'Lecture', '10:00-12:00'],
-              ['Operating Systems', 'Dr. Sarah', 'L2', 'Lecture', '12:00-2:00'],
-              ['Networks', 'Dr. John', 'L1', 'Lecture', '2:00-4:00'],
-            ]),
-            buildDaySection('Thursday', [
-              ['Databases 1', 'Dr. Mohamed', 'L3', 'Lecture', '10:00-12:00'],
-            ]),
           ],
         ),
       ),

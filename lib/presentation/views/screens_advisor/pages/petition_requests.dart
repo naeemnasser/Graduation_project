@@ -1,30 +1,32 @@
+import 'package:adaa/presentation/views/screens_advisor/pages/petition_detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PetitionRequests extends StatefulWidget {
+class PetitionRequests extends ConsumerStatefulWidget {
   const PetitionRequests({Key? key}) : super(key: key);
-
   @override
-  State<PetitionRequests> createState() => _PetitionRequestsState();
+  ConsumerState<PetitionRequests> createState() => _PetitionRequestsState();
 }
 
-class _PetitionRequestsState extends State<PetitionRequests> {
+class _PetitionRequestsState extends ConsumerState<PetitionRequests> {
   // Sample data - in a real app, this would come from an API
   final List<Map<String, dynamic>> requests = [
     {
       'id': 'REQ001',
       'studentId': 'ST12345',
-      'studentName': 'Ahmed Ali',
-      'requestType': 'Course Registration',
+      'studentName': 'Naeem Nazih',
+      'requestType': 'Rate Adjustment',
       'course': 'CS101 - Intro to Computer Science',
       'status': 'Pending',
       'date': '2025-03-01',
-      'details': 'Student requests to register for CS101 after the registration period.',
+      'details':
+          'Student requests to register for CS101 after the registration period.',
     },
     {
       'id': 'REQ002',
       'studentId': 'ST12346',
-      'studentName': 'Sara Mohamed',
-      'requestType': 'Course Drop',
+      'studentName': 'Malk mohamed ',
+      'requestType': 'Rate Adjustment',
       'course': 'MATH202 - Calculus II',
       'status': 'Approved',
       'date': '2025-02-28',
@@ -33,17 +35,18 @@ class _PetitionRequestsState extends State<PetitionRequests> {
     {
       'id': 'REQ003',
       'studentId': 'ST12347',
-      'studentName': 'Omar Ibrahim',
-      'requestType': 'Section Change',
+      'studentName': 'Ayman el-mahdy',
+      'requestType': 'Rate Adjustment',
       'course': 'ENG101 - English Language 1',
       'status': 'Rejected',
       'date': '2025-02-27',
-      'details': 'Student requests to change from Section A to Section B due to schedule conflict.',
+      'details':
+          'Student requests to change from Section A to Section B due to schedule conflict.',
     },
   ];
 
   String _statusFilter = 'All';
-  final List<String> _statusOptions = ['All', 'Pending', 'Approved', 'Rejected'];
+  final List<String> _statusOptions = ['All'];
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +125,8 @@ class _PetitionRequestsState extends State<PetitionRequests> {
                     value: _statusFilter,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     ),
                     items: _statusOptions.map((status) {
                       return DropdownMenuItem<String>(
@@ -148,7 +152,7 @@ class _PetitionRequestsState extends State<PetitionRequests> {
   Widget _buildRequestCard(Map<String, dynamic> request) {
     Color statusColor;
     switch (request['status']) {
-      case 'Approved':
+      case 'open':
         statusColor = Colors.green;
         break;
       case 'Rejected':
@@ -199,12 +203,28 @@ class _PetitionRequestsState extends State<PetitionRequests> {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          _updateRequestStatus(request, 'Approved');
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PetitionDetailScreen(
+                                request: {
+                                  'id': request['id'],
+                                  'studentId': request['studentId'],
+                                  'studentName': request['studentName'],
+                                  'requestType': request['requestType'],
+                                  'course': request['course'],
+                                  'status': request['status'],
+                                  'date': request['date'],
+                                  'details': request['details'],
+                                },
+                              ),
+                            ),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.green,
                         ),
-                        child: const Text('Approve'),
+                        child: const Text('Open'),
                       ),
                       const SizedBox(width: 8),
                       ElevatedButton(

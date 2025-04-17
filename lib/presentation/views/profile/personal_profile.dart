@@ -10,15 +10,15 @@ class ProfilePage extends StatelessWidget {
 
   // Constructor with optional parameters to receive data from EditProfile
   ProfilePage({
-    this.email = 'naeem.98596@edu.eg',
+    this.email = 'Ayman.98596@edu.eg',
     this.address = 'Cairo, Egypt',
-    this.phone = '01013863464',
+    this.phone = '01012123421',
   });
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 192, 233, 243),
+        backgroundColor: const Color.fromARGB(255, 128, 128, 128),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -39,11 +39,12 @@ class ProfilePage extends StatelessWidget {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => ProfilePage(
-                  email: email,
-                  address: address,
-                  phone: phone,
-                )),
+                MaterialPageRoute(
+                    builder: (context) => ProfilePage(
+                          email: email,
+                          address: address,
+                          phone: phone,
+                        )),
               );
             },
           ),
@@ -66,7 +67,7 @@ class ProfilePage extends StatelessWidget {
               ),
               SizedBox(height: 16),
               Text(
-                'Hello Naeem',
+                'Hello Ayman',
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 16),
