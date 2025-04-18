@@ -1,4 +1,4 @@
-import 'package:adaa/presentation/views/screens_advisor/pages/result.dart';
+import 'package:adaa/presentation/views/screens_advisor/pages/resultversion1.dart';
 import 'package:adaa/presentation/views/screens_advisor/semester_info.dart';
 import 'package:adaa/presentation/views/screens_advisor/pages/request_course_modification.dart';
 import 'package:adaa/presentation/views/screens_advisor/pages/request_department_modification.dart';

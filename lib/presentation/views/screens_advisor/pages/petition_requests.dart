@@ -197,47 +197,36 @@ class _PetitionRequestsState extends ConsumerState<PetitionRequests> {
                 _buildInfoRow('Course', request['course']),
                 _buildInfoRow('Details', request['details']),
                 const SizedBox(height: 16),
-                if (request['status'] == 'Pending')
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PetitionDetailScreen(
-                                request: {
-                                  'id': request['id'],
-                                  'studentId': request['studentId'],
-                                  'studentName': request['studentName'],
-                                  'requestType': request['requestType'],
-                                  'course': request['course'],
-                                  'status': request['status'],
-                                  'date': request['date'],
-                                  'details': request['details'],
-                                },
-                              ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PetitionDetailScreen(
+                              request: {
+                                'id': request['id'],
+                                'studentId': request['studentId'],
+                                'studentName': request['studentName'],
+                                'requestType': request['requestType'],
+                                'course': request['course'],
+                                'status': request['status'],
+                                'date': request['date'],
+                                'details': request['details'],
+                              },
                             ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.green,
-                        ),
-                        child: const Text('Open'),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
                       ),
-                      const SizedBox(width: 8),
-                      ElevatedButton(
-                        onPressed: () {
-                          _updateRequestStatus(request, 'Rejected');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                        ),
-                        child: const Text('Reject'),
-                      ),
-                    ],
-                  ),
+                      child: const Text('Open'),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -264,19 +253,6 @@ class _PetitionRequestsState extends ConsumerState<PetitionRequests> {
           ),
         ],
       ),
-    );
-  }
-
-  void _updateRequestStatus(Map<String, dynamic> request, String newStatus) {
-    setState(() {
-      final index = requests.indexWhere((r) => r['id'] == request['id']);
-      if (index != -1) {
-        requests[index]['status'] = newStatus;
-      }
-    });
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Request ${request['id']} $newStatus')),
     );
   }
 }

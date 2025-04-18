@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:ui'; // Added for Offset usage
+import 'dart:ui';
+
+import 'result.dart'; // Added for Offset usage
 
 class PetitionDetailScreen extends StatefulWidget {
   final Map<String, dynamic> request;
@@ -11,8 +13,6 @@ class PetitionDetailScreen extends StatefulWidget {
 }
 
 class _PetitionDetailScreenState extends State<PetitionDetailScreen> {
-  List<Offset> _signaturePoints = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,29 +97,94 @@ class _PetitionDetailScreenState extends State<PetitionDetailScreen> {
                   _buildInfoRow('Name', 'student_name'),
                   _buildInfoRow('Date', 'petiton_date'),
                   const SizedBox(height: 12),
-                  const Text(
-                    'desision',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
+                  Card(
+                    elevation: 4,
+                    margin: const EdgeInsets.symmetric(vertical: 8),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const Text(
+                            'Decision',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Container(
+                            height: 100,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: TextField(
+                                maxLines: null,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintText: 'Write the decision here...',
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: _InfoCategory(
+                                  label: 'Num_Courses',
+                                  value: 'num_courses',
+                                ),
+                              ),
+                              SizedBox(width: 16),
+                              Expanded(
+                                child: _InfoCategory(
+                                  label: 'Amount Paid',
+                                  value: 'amount_paid',
+                                ),
+                              ),
+                              SizedBox(width: 16),
+                              Expanded(
+                                child: _InfoCategory(
+                                  label: 'Payment Date',
+                                  value: 'payment_date',
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  const SizedBox(height: 16),
-                  _SignaturePad(points: _signaturePoints),
-                  const SizedBox(height: 16),
                   _buildInfoRow('Financial Affairs', 'sarah ahmed'),
                   const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Add your button logic here
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green, // Button color
-                      foregroundColor: Colors.white, // Font color
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResultInfo(),
+                          ),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 16), // Smaller padding
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        backgroundColor: Colors.green, // Button color
+                        foregroundColor: Colors.white, // Font color
+                      ),
+                      child: const Text('Result'),
                     ),
-                    child: const Text('Result'),
                   ),
                 ],
               ),
@@ -169,32 +234,6 @@ class _PetitionDetailScreenState extends State<PetitionDetailScreen> {
       ],
     );
   }
-
-  Widget _buildDecisionSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Decision',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
-        ),
-        const SizedBox(height: 16),
-        TextField(
-          onChanged: (value) {
-            setState(() {});
-          },
-          decoration: const InputDecoration(
-            labelText: 'Enter your decision',
-            border: OutlineInputBorder(),
-          ),
-        ),
-      ],
-    );
-  }
 }
 
 class _SignaturePad extends StatelessWidget {
@@ -237,4 +276,35 @@ class SignaturePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(SignaturePainter oldDelegate) => true;
+}
+
+class _InfoCategory extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const _InfoCategory({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 14,
+            color: Colors.black54,
+          ),
+        ),
+      ],
+    );
+  }
 }
