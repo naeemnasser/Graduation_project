@@ -12,9 +12,10 @@ class AdminDashboard extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white38,
+          backgroundColor: Colors.grey[300], // Changed to grey background
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: Icon(Icons.arrow_back,
+                color: Colors.black), // Black icon for contrast
             onPressed: () {
               Navigator.pushReplacement(
                 context,
@@ -30,7 +31,9 @@ class AdminDashboard extends StatelessWidget {
               SizedBox(width: 10),
               Text("Dashboard",
                   style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold)),
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18)),
               SizedBox(width: 20),
               Container(
                 height: 20,
@@ -42,7 +45,9 @@ class AdminDashboard extends StatelessWidget {
               SizedBox(width: 20),
               Text("Requests",
                   style: TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold)),
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16)),
               Spacer(),
               GestureDetector(
                 onTap: () {
@@ -54,20 +59,26 @@ class AdminDashboard extends StatelessWidget {
                 },
                 child: Text("Logout",
                     style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.bold)),
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16)),
               ),
             ],
           ),
           actions: [
-            IconButton(icon: Icon(Icons.notifications), onPressed: () {}),
             IconButton(
-              icon: Icon(Icons.person),
+                icon: Icon(Icons.notifications, color: Colors.black),
+                onPressed: () {}),
+            IconButton(
+              icon: Icon(Icons.person, color: Colors.black),
               onPressed: () {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => ProfilePage()));
               },
             ),
-            IconButton(icon: Icon(Icons.help_outline), onPressed: () {}),
+            IconButton(
+                icon: Icon(Icons.help_outline, color: Colors.black),
+                onPressed: () {}),
           ],
         ),
         body: Padding(
@@ -108,7 +119,36 @@ class AdminDashboard extends StatelessWidget {
                             style: TextStyle(fontWeight: FontWeight.bold))),
                   ],
                   rows: [
-                    // Add your DataRow items here
+                    DataRow(cells: [
+                      DataCell(Text('CS101')),
+                      DataCell(Text('Intro to Computer Science')),
+                      DataCell(Text('1')),
+                      DataCell(Text('30')),
+                      DataCell(Text('10')),
+                      DataCell(Text('3')),
+                      DataCell(Text('Computer Science')),
+                      DataCell(Text('Active')),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text('MATH202')),
+                      DataCell(Text('Calculus II')),
+                      DataCell(Text('2')),
+                      DataCell(Text('25')),
+                      DataCell(Text('8')),
+                      DataCell(Text('3')),
+                      DataCell(Text('Mathematics')),
+                      DataCell(Text('Active')),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text('ENG101')),
+                      DataCell(Text('English Language 1')),
+                      DataCell(Text('1')),
+                      DataCell(Text('20')),
+                      DataCell(Text('5')),
+                      DataCell(Text('2')),
+                      DataCell(Text('Languages')),
+                      DataCell(Text('Inactive')),
+                    ]),
                   ],
                 ),
                 SizedBox(height: 20),
@@ -157,7 +197,21 @@ class AdminDashboard extends StatelessWidget {
                             style: TextStyle(fontWeight: FontWeight.bold))),
                   ],
                   rows: [
-                    // Add your DataRow items here
+                    DataRow(cells: [
+                      DataCell(Text('CS')),
+                      DataCell(Text('Computer Science')),
+                      DataCell(Text('Active')),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text('MATH')),
+                      DataCell(Text('Mathematics')),
+                      DataCell(Text('Active')),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(Text('ENG')),
+                      DataCell(Text('Languages')),
+                      DataCell(Text('Inactive')),
+                    ]),
                   ],
                 ),
                 SizedBox(height: 20),

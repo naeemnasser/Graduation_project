@@ -24,7 +24,7 @@ class DashboardPage extends StatelessWidget {
           children: [
             Image.asset("assets/advisorylogostroke.png", height: 40),
             SizedBox(width: 10),
-            Text("MTI",
+            Text("Dashboard",
                 style: TextStyle(
                     color: Colors.black, fontWeight: FontWeight.bold)),
           ],

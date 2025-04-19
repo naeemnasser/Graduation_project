@@ -1,9 +1,11 @@
-import 'package:adaa/presentation/views/screens_advisor/pages/petition_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'petition_detail_screen.dart';
+
 class PetitionRequests extends ConsumerStatefulWidget {
   const PetitionRequests({Key? key}) : super(key: key);
+
   @override
   ConsumerState<PetitionRequests> createState() => _PetitionRequestsState();
 }
@@ -17,7 +19,6 @@ class _PetitionRequestsState extends ConsumerState<PetitionRequests> {
       'studentName': 'Naeem Nazih',
       'requestType': 'Rate Adjustment',
       'course': 'CS101 - Intro to Computer Science',
-      'status': 'Pending',
       'date': '2025-03-01',
       'details':
           'Student requests to register for CS101 after the registration period.',
@@ -25,10 +26,9 @@ class _PetitionRequestsState extends ConsumerState<PetitionRequests> {
     {
       'id': 'REQ002',
       'studentId': 'ST12346',
-      'studentName': 'Malk mohamed ',
+      'studentName': 'Malk mohamed',
       'requestType': 'Rate Adjustment',
       'course': 'MATH202 - Calculus II',
-      'status': 'Approved',
       'date': '2025-02-28',
       'details': 'Student requests to drop MATH202 due to medical reasons.',
     },
@@ -38,110 +38,258 @@ class _PetitionRequestsState extends ConsumerState<PetitionRequests> {
       'studentName': 'Ayman el-mahdy',
       'requestType': 'Rate Adjustment',
       'course': 'ENG101 - English Language 1',
-      'status': 'Rejected',
       'date': '2025-02-27',
       'details':
           'Student requests to change from Section A to Section B due to schedule conflict.',
     },
   ];
 
-  String _statusFilter = 'All';
-  final List<String> _statusOptions = ['All'];
-
   @override
   Widget build(BuildContext context) {
-    final filteredRequests = _statusFilter == 'All'
-        ? requests
-        : requests.where((req) => req['status'] == _statusFilter).toList();
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Petition Requests'),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      backgroundColor: Colors.white,
+      body: SafeArea(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Petition Requests',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 16),
-            _buildFilterSection(),
-            const SizedBox(height: 16),
+            _buildCustomHeader(),
             Expanded(
-              child: filteredRequests.isEmpty
-                  ? const Center(child: Text('No requests found'))
-                  : ListView.builder(
-                      itemCount: filteredRequests.length,
-                      itemBuilder: (context, index) {
-                        final request = filteredRequests[index];
-                        return _buildRequestCard(request);
-                      },
-                    ),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: _buildRequestsList(),
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Refresh data (in a real app, this would fetch from API)
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Refreshing requests...')),
-          );
-        },
-        child: const Icon(Icons.refresh),
+      floatingActionButton: _buildRefreshButton(),
+    );
+  }
+
+  Widget _buildCustomHeader() {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 204, 211, 217),
+        borderRadius: const BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+        ),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Center(
+                  child: const Text(
+                    'Petition Requests',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87,
+                    ),
+                  ),
+                ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.logout, color: Colors.black),
+                onPressed: () {
+                  // Implement logout functionality
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          _buildHeaderDataTable(),
+        ],
       ),
     );
   }
 
-  Widget _buildFilterSection() {
+  Widget _buildHeaderDataTable() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.shade200,
+            blurRadius: 5,
+            spreadRadius: 2,
+          ),
+        ],
+      ),
+      child: Table(
+        border: TableBorder.symmetric(
+          inside: BorderSide(color: Colors.grey.shade200),
+        ),
+        children: [
+          TableRow(
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 152, 153, 155),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10),
+                topRight: Radius.circular(10),
+              ),
+            ),
+            children: const [
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  '#',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'College',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Result',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'Details',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ],
+          ),
+          TableRow(
+            children: [
+              _buildTableCell(requests.length.toString()),
+              _buildTableCell('Computer Science'),
+              _buildTableCell('${requests.length} Requests'),
+              _buildTableCell('View All'),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTableCell(String text) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: TextStyle(color: Colors.black87, fontSize: 16),
+      ),
+    );
+  }
+
+  Widget _buildRequestsList() {
+    if (requests.isEmpty) {
+      return const Center(
+        child: Text(
+          'No requests found',
+          style: TextStyle(color: Colors.grey),
+        ),
+      );
+    }
+
+    return ListView.builder(
+      itemCount: requests.length,
+      itemBuilder: (context, index) {
+        final request = requests[index];
+        return _buildRequestCard(request);
+      },
+    );
+  }
+
+  Widget _buildRequestCard(Map<String, dynamic> request) {
     return Card(
-      elevation: 4,
+      // ignore: deprecated_member_use
+      color: Colors.white.withOpacity(0.9),
+      margin: const EdgeInsets.only(bottom: 16),
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Filter Requests',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 8),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Status: '),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: DropdownButtonFormField<String>(
-                    value: _statusFilter,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    ),
-                    items: _statusOptions.map((status) {
-                      return DropdownMenuItem<String>(
-                        value: status,
-                        child: Text(status),
-                      );
-                    }).toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _statusFilter = value!;
-                      });
-                    },
+                Text(
+                  'Request #${request['id']}',
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  request['date'],
+                  style: TextStyle(
+                    color: Colors.grey.shade600,
+                    fontSize: 12,
                   ),
                 ),
               ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Student: ${request['studentName']}',
+              style: TextStyle(color: Colors.grey.shade700),
+            ),
+            Text(
+              'Course: ${request['course']}',
+              style: TextStyle(color: Colors.grey.shade700),
+            ),
+            const SizedBox(height: 12),
+            Align(
+              alignment: Alignment.centerRight,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PetitionDetailScreen(
+                        request: {
+                          'id': request['id'],
+                          'studentId': request['studentId'],
+                          'studentName': request['studentName'],
+                          'course': request['course'],
+                          'date': request['date'],
+                          'details': request['details'],
+                        },
+                      ),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Text(
+                  'Open',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
@@ -149,110 +297,15 @@ class _PetitionRequestsState extends ConsumerState<PetitionRequests> {
     );
   }
 
-  Widget _buildRequestCard(Map<String, dynamic> request) {
-    Color statusColor;
-    switch (request['status']) {
-      case 'open':
-        statusColor = Colors.green;
-        break;
-      case 'Rejected':
-        statusColor = Colors.red;
-        break;
-      default:
-        statusColor = Colors.orange;
-    }
-
-    return Card(
-      margin: const EdgeInsets.only(bottom: 16),
-      elevation: 4,
-      child: ExpansionTile(
-        title: Text(
-          'Request #${request['id']} - ${request['requestType']}',
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
-        subtitle: Text(
-          'Student: ${request['studentName']} | Date: ${request['date']}',
-        ),
-        trailing: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          decoration: BoxDecoration(
-            color: statusColor,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Text(
-            request['status'],
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildInfoRow('Student ID', request['studentId']),
-                _buildInfoRow('Course', request['course']),
-                _buildInfoRow('Details', request['details']),
-                const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PetitionDetailScreen(
-                              request: {
-                                'id': request['id'],
-                                'studentId': request['studentId'],
-                                'studentName': request['studentName'],
-                                'requestType': request['requestType'],
-                                'course': request['course'],
-                                'status': request['status'],
-                                'date': request['date'],
-                                'details': request['details'],
-                              },
-                            ),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                      ),
-                      child: const Text('Open'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildInfoRow(String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: 100,
-            child: Text(
-              '$label:',
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-          Expanded(
-            child: Text(value),
-          ),
-        ],
-      ),
+  Widget _buildRefreshButton() {
+    return FloatingActionButton(
+      onPressed: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Refreshing requests...')),
+        );
+      },
+      backgroundColor: Colors.blue,
+      child: const Icon(Icons.refresh),
     );
   }
 }

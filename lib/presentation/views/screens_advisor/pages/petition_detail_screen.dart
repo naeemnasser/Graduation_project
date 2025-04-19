@@ -17,8 +17,9 @@ class _PetitionDetailScreenState extends State<PetitionDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Admission and Registration Department'),
-        backgroundColor: const Color.fromARGB(255, 128, 128, 128),
+        title:
+            Center(child: const Text('Admission and Registration Department')),
+        backgroundColor: Colors.white,
         elevation: 0.5,
       ),
       backgroundColor: Colors.white, // Set background color to white
@@ -232,26 +233,6 @@ class _PetitionDetailScreenState extends State<PetitionDetailScreen> {
               child: Text('• $item'),
             )),
       ],
-    );
-  }
-}
-
-class _SignaturePad extends StatelessWidget {
-  final List<Offset> points;
-
-  const _SignaturePad({required this.points});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: CustomPaint(
-        painter: SignaturePainter(points: points),
-      ),
     );
   }
 }
