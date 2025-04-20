@@ -1,6 +1,7 @@
 import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
 
+import 'applicationoneExample.dart';
 import 'reciepts.dart';
 
 class ApplicationsPage extends StatelessWidget {
@@ -76,26 +77,119 @@ class ApplicationsPage extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Applications',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        child: Center(
+          child: Column(
+            crossAxisAlignment:
+                CrossAxisAlignment.center, // Center horizontally
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'Applications',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
               ),
-            ),
-            DataTable(
-              columns: [
-                DataColumn(label: Text('#')),
-                DataColumn(label: Text('Date')),
-                DataColumn(label: Text('Name')),
-                DataColumn(label: Text('College')),
-                DataColumn(label: Text('Status')),
-              ],
-              rows: [], // Replace with dynamic data
-            ),
-          ],
+              DataTable(
+                columns: [
+                  DataColumn(label: Text('#')),
+                  DataColumn(label: Text('Date')),
+                  DataColumn(label: Text('Name')),
+                  DataColumn(label: Text('College')),
+                  DataColumn(label: Text('Status')),
+                ],
+                rows: [
+                  DataRow(cells: [
+                    DataCell(Text('1')),
+                    DataCell(Text('2023-10-01')),
+                    DataCell(Text('John Doe')),
+                    DataCell(Text('Engineering')),
+                    DataCell(
+                      Row(
+                        children: [
+                          Text('In Progress',
+                              style: TextStyle(color: Colors.black)),
+                          SizedBox(width: 8),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ApplicationExample(),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue, // Button color
+                              foregroundColor: Colors.black, // Text color
+                            ),
+                            child: Text('Open'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
+                  DataRow(cells: [
+                    DataCell(Text('2')),
+                    DataCell(Text('2023-10-02')),
+                    DataCell(Text('Jane Smith')),
+                    DataCell(Text('Business')),
+                    DataCell(
+                      Row(
+                        children: [
+                          Text('Approved'),
+                          SizedBox(width: 8),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ApplicationExample(),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue, // Button color
+                              foregroundColor: Colors.black, // Text color
+                            ),
+                            child: Text('Open'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
+                  DataRow(cells: [
+                    DataCell(Text('3')),
+                    DataCell(Text('2023-10-03')),
+                    DataCell(Text('Alice Johnson')),
+                    DataCell(Text('Computer Science')),
+                    DataCell(
+                      Row(
+                        children: [
+                          Text('Rejected'),
+                          SizedBox(width: 8),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ApplicationExample(),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue, // Button color
+                              foregroundColor: Colors.black, // Text color
+                            ),
+                            child: Text('Open'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

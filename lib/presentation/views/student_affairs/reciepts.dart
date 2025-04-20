@@ -2,6 +2,7 @@ import 'package:adaa/presentation/views/student_affairs/Aplications.dart';
 import 'package:flutter/material.dart';
 
 import '../screens_admin/loginPage.dart';
+import 'tuition_receipt.dart';
 
 class ReceiptsPage extends StatelessWidget {
   @override
@@ -76,6 +77,7 @@ class ReceiptsPage extends StatelessWidget {
         ],
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center, // Center horizontally
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -84,18 +86,116 @@ class ReceiptsPage extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
-          DataTable(
-            columns: [
-              DataColumn(label: Text('#')),
-              DataColumn(label: Text('Student ID')),
-              DataColumn(label: Text('Name')),
-              DataColumn(label: Text('Payment')),
-              DataColumn(label: Text('Status')),
-            ],
-            rows: [], // Replace with dynamic data
+          Center(
+            // Center the table horizontally
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey, width: 1),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: DataTable(
+                headingRowColor: WidgetStateProperty.all(Colors.grey[300]),
+                dataRowColor: WidgetStateProperty.resolveWith<Color?>(
+                  (Set<WidgetState> states) {
+                    return states.contains(WidgetState.selected)
+                        ? Colors.grey[200]
+                        : Colors.white;
+                  },
+                ),
+                columns: [
+                  DataColumn(
+                    label: Text(
+                      '#',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  DataColumn(
+                    label: Text(
+                      'Student ID',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  DataColumn(
+                    label: Text(
+                      'Name',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  DataColumn(
+                    label: Text(
+                      'Payment',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  DataColumn(
+                    label: Text(
+                      'Status',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+                rows: [
+                  buildDataRow(
+                      1, "S001", "Naeem Nazih", "18000", StatusButtons()),
+                  buildDataRow(
+                      2, "S002", "Malk Al sati", "\$700", StatusButtons()),
+                  buildDataRow(
+                      3, "S003", "ayman elmahdy", "20000", StatusButtons()),
+                ],
+              ),
+            ),
           ),
         ],
       ),
+    );
+  }
+
+  DataRow buildDataRow(int index, String studentId, String name, String payment,
+      Widget statusButtons) {
+    return DataRow(
+      cells: [
+        DataCell(Text(index.toString())),
+        DataCell(Text(studentId)),
+        DataCell(Text(name)),
+        DataCell(Text(payment)),
+        DataCell(statusButtons),
+      ],
+    );
+  }
+}
+
+class StatusButtons extends StatelessWidget {
+  const StatusButtons({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => TuitionReceipt(),
+              ),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.blue,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          ),
+          child: const Text("Open", style: TextStyle(color: Colors.white)),
+        ),
+        ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.grey,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          ),
+          child: const Text("Print", style: TextStyle(color: Colors.white)),
+        ),
+      ],
     );
   }
 }

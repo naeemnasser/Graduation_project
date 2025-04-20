@@ -135,21 +135,18 @@ class _FollowUpTableScreenState extends State<FollowUpTableScreen> {
           ),
           Positioned(
             bottom: 20,
-            left: 0,
-            right: 0,
-            child: Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Handle submit action
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent, // Use blueAccent color
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                ),
-                child: Text(
-                  'Submit',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+            left: 20, // Align the button to the most left
+            child: ElevatedButton(
+              onPressed: () {
+                // Handle submit action
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueAccent, // Use blueAccent color
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+              ),
+              child: Text(
+                'Submit',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
           ),

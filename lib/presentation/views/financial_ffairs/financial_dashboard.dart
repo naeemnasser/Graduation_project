@@ -2,7 +2,7 @@ import 'package:adaa/item/app_bar_items_updated.dart';
 import 'package:adaa/presentation/views/financial_ffairs/details_page.dart';
 import 'package:adaa/presentation/views/financial_ffairs/Manger.dart';
 // import 'package:adaa/presentation/views/financial_ffairs/payment_form.dart';
-import 'package:adaa/presentation/views/financial_ffairs/petition_receipt_view.dart';
+import 'package:adaa/presentation/views/student_affairs/tuition_receipt.dart';
 import 'package:adaa/presentation/views/financial_ffairs/petition_request.dart';
 import 'package:adaa/presentation/views/home/homescreen.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +32,7 @@ class _FinancialDashboardState extends State<FinancialDashboard> {
   final List<Widget> _pages = [
     DetailsPage(),
     // PaymentForm(),
-    petitionReceiptView(),
+    TuitionReceipt(), // Ensure 'TuitionReceipt' is a valid widget imported in your code
     PetitionForm(),
     FinancialStatisticsPage(),
   ];

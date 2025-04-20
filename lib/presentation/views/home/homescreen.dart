@@ -1,5 +1,6 @@
 import 'package:adaa/item/app_bar_items_updated.dart';
 import 'package:adaa/presentation/views/home/Applicationform..dart';
+import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,12 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBarWidget(
         title: 'Home',
         imagePath: 'assets/advisorylogostroke.png',
+        onProfileIconPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => LoginScreen()),
+          );
+        },
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {

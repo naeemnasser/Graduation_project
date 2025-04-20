@@ -10,6 +10,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     required this.imagePath,
     required this.arrowIcon,
     this.backDestination,
+    this.onProfileIconPressed, // Add this parameter
   });
 
   @override
@@ -19,6 +20,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String imagePath;
   final Widget? arrowIcon;
   final Widget? backDestination;
+  final VoidCallback? onProfileIconPressed; // Add this parameter
 
   const AppBarWidget({
     super.key,
@@ -26,12 +28,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
     required this.imagePath,
     this.arrowIcon,
     this.backDestination,
+    this.onProfileIconPressed, // Initialize it
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: const Color.fromARGB(255, 128, 128, 128),
+      backgroundColor: Colors.grey[300],
       elevation: 0.5,
       leading: IconButton(
         // Use the provided arrowIcon, or default to Icons.arrow_back if none is provided.
@@ -73,12 +76,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
             onPressed: () {}),
         IconButton(
             icon: Icon(Icons.person, color: Colors.black54),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
-              );
-            }),
+            onPressed: onProfileIconPressed), // Use the callback here
         IconButton(
             icon: Icon(Icons.help_outline, color: Colors.black54),
             onPressed: () {

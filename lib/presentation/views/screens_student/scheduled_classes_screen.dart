@@ -1,6 +1,7 @@
-import 'package:adaa/presentation/views/profile/personal_profile.dart';
-import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:flutter/material.dart';
+
+import '../../../item/app_bar_items_updated.dart';
+import '../profile/personal_profile.dart';
 
 class ScheduledClassesScreen extends StatelessWidget {
   const ScheduledClassesScreen(
@@ -19,29 +20,15 @@ class ScheduledClassesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('MTI Academic Website'),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => const LoginScreen()),
-            );
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.person),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
-              );
-            },
-          ),
-        ],
+      appBar: AppBarWidget(
+        title: 'Student Timetable',
+        imagePath: 'assets/advisorylogostroke.png',
+        onProfileIconPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ProfilePage()),
+          );
+        },
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -50,42 +37,31 @@ class ScheduledClassesScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 22.0), // Add padding to the left
-                  child: Image.asset(
-                    'assets/advisorylogostroke.png',
-                    width: 140,
-                    height: 170,
-                  ),
-                ),
-                Text(
-                  'Scheduled Classes',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(
-                  width: 70,
-                ),
-                Text(
-                  'spring 2025',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                  padding: const EdgeInsets.symmetric(horizontal: 90.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Semeter Of Spring 2025',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      right: 22.0), // Add padding to the left
+                  padding: const EdgeInsets.symmetric(horizontal: 90.0),
                   child: Image.asset(
-                    'assets/image.png',
-                    width: 140,
-                    height: 170,
+                    'assets/mticslogo.jpg', // Path to the image
+                    height: 80,
+                    width: 80,
                   ),
                 ),
               ],
             ),
+            const SizedBox(height: 16),
             SingleChildScrollView(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -94,9 +70,9 @@ class ScheduledClassesScreen extends StatelessWidget {
                   // Choose Level Dropdown
                   Center(
                     child: Text(
-                      'Level one',
+                      'schedule of classes \n  Level 1 General',
                       style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
                     ),
                   ),
                   SizedBox(height: 16),
@@ -104,41 +80,48 @@ class ScheduledClassesScreen extends StatelessWidget {
                     [
                       'Linear Algebra 1',
                       'Dr. Ahmed',
-                      'C2.1',
+                      'S01',
                       'Lecture',
                       '10:00-12:00'
                     ],
-                    ['Math 1', 'Dr. Salma', 'C2.2', 'Lecture', '12:00-2:00'],
-                    ['Linear Algebra 1', 'Dr. Alaa', 'L1', 'L', '12:00-2:00'],
+                    ['Math 1', 'Dr. Salma', 'S02', 'Lecture', '12:00-2:00'],
+                    [
+                      'Linear Algebra 1',
+                      'Dr. Alaa',
+                      'Lab',
+                      'Lab',
+                      '12:00-2:00'
+                    ],
                   ]),
                   buildDaySection('Monday', [
-                    ['dsp', 'Dr. said', 'L3', 'Lecture', '1:00-2:15'],
-                    ['Math1', 'Dr. Salma', 'Sec 1', 'S', '10:00-12:00'],
-                    ['Math1', 'Dr. Salma', 'Sec 5', 'S', '12:00-2:00'],
+                    ['DSP', 'Dr. Said', 'S03', 'Lecture', '1:00-2:15'],
+                    ['Math 1', 'Dr. Salma', 'S04', 'Section', '10:00-12:00'],
+                    ['Math 1', 'Dr. Salma', 'S05', 'Section', '12:00-2:00'],
                   ]),
                   buildDaySection('Tuesday', [
-                    ['Math1', 'Dr. Salma', 'Sec 1', 'S', '10:00-12:00'],
+                    ['Math 1', 'Dr. Salma', 'S06', 'Section', '10:00-12:00'],
                   ]),
                   buildDaySection('Wednesday', [
-                    ['AI', 'Dr. Mohamed', 'L3', 'Lecture', '10:00-12:00'],
+                    ['AI', 'Dr. Mohamed', 'S07', 'Lecture', '10:00-12:00'],
                     [
                       'Operating Systems',
                       'Dr. Sarah',
-                      'L2',
+                      'S08',
                       'Lecture',
                       '12:00-2:00'
                     ],
-                    ['Networks', 'Dr. John', 'L1', 'Lecture', '2:00-4:00'],
+                    ['Networks', 'Dr. John', 'S09', 'Lecture', '2:00-4:00'],
                   ]),
                   buildDaySection('Thursday', [
                     [
                       'Databases 1',
                       'Dr. Mohamed',
-                      'L3',
+                      'S10',
                       'Lecture',
                       '10:00-12:00'
                     ],
                   ]),
+                  buildNotesAndDeanSign(),
                 ],
               ),
             ),
@@ -196,8 +179,81 @@ class ScheduledClassesScreen extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 16),
         ],
       ),
+    );
+  }
+
+  Widget buildNotesAndDeanSign() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Notes:',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                '- Please adhere to the schedule and timings.',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '- Attendance is mandatory for all lectures and labs.',
+                style: TextStyle(fontSize: 14),
+              ),
+              Text(
+                '- Contact your instructor for any clarifications.',
+                style: TextStyle(fontSize: 14),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'Dean\'s Signature:',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(width: 16),
+                    Container(
+                      width: 200,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: Colors.black, width: 1.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 32),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text(
+                'Prof. Dr. Mohamed Taher Elmayah',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'Dean of Computer Science and AI',
+                style: TextStyle(fontSize: 14),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 

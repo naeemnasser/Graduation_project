@@ -16,6 +16,7 @@ class AddCourseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.grey[400],
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

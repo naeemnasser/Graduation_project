@@ -112,7 +112,8 @@ class _LoginScreenState extends State<LoginScreen> {
             );
           },
         ),
-        backgroundColor: const Color.fromARGB(255, 128, 128, 128),
+        backgroundColor: Colors.grey[300],
+        centerTitle: true,
         elevation: 0.5,
         title: Row(
           children: [
