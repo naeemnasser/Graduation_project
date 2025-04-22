@@ -2,7 +2,7 @@ import 'package:adaa/presentation/views/student_affairs/Aplications.dart';
 import 'package:flutter/material.dart';
 
 import '../screens_admin/loginPage.dart';
-import 'tuition_receipt.dart';
+import 'tuition_receipts.dart';
 
 class ReceiptsPage extends StatelessWidget {
   @override
