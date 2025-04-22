@@ -177,7 +177,7 @@ class StatusButtons extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => TuitionReceipt(),
+                builder: (context) => TuitionReceiptPage(),
               ),
             );
           },

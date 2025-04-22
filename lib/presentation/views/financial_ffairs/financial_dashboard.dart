@@ -32,7 +32,7 @@ class _FinancialDashboardState extends State<FinancialDashboard> {
   final List<Widget> _pages = [
     DetailsPage(),
     // PaymentForm(),
-    TuitionReceipt(), // Ensure 'TuitionReceipt' is a valid widget imported in your code
+    TuitionReceiptPage(), // Ensure 'TuitionReceipt' is a valid widget imported in your code
     PetitionForm(),
     FinancialStatisticsPage(),
   ];
