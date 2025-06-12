@@ -5,22 +5,21 @@ import 'package:flutter/material.dart';
 import '../profile/personal_profile.dart';
 
 class SemesterInfoPage extends StatefulWidget {
-  const SemesterInfoPage({Key? key}) : super(key: key);
+  const SemesterInfoPage({super.key});
 
   @override
   State<SemesterInfoPage> createState() => _SemesterInfoPageState();
 }
 
 class _SemesterInfoPageState extends State<SemesterInfoPage> {
-  final TextEditingController departmentController = TextEditingController();
   final TextEditingController timeSlotController = TextEditingController();
 
-  Widget _buildInputField(String hint, {Color? color}) {
+  Widget _buildInputField(String hint) {
     return Container(
       width: double.infinity,
       constraints: const BoxConstraints(minWidth: 150, maxWidth: 700),
       decoration: BoxDecoration(
-        color: color ?? Colors.white,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(6),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -53,8 +52,11 @@ class _SemesterInfoPageState extends State<SemesterInfoPage> {
       children: [
         const SizedBox(width: 10),
         RichText(
-            text: TextSpan(
-                children: children, style: DefaultTextStyle.of(context).style)),
+          text: TextSpan(
+            children: children,
+            style: DefaultTextStyle.of(context).style,
+          ),
+        ),
       ],
     );
   }
@@ -137,7 +139,6 @@ class _SemesterInfoPageState extends State<SemesterInfoPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Welcome at the top and centered
                 const Padding(
                   padding: EdgeInsets.only(top: 32.0, bottom: 24.0),
                   child: Center(
@@ -173,21 +174,22 @@ class _SemesterInfoPageState extends State<SemesterInfoPage> {
                               ],
                             ),
                             _buildSectionTitle(
-                                'Enter number of students for each level',
-                                fontSize: 16,
-                                fontWeight: FontWeight.normal),
+                              'Enter number of students for each level',
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
                             const SizedBox(height: 12),
-                            _buildInputField('Level 1', color: Colors.white),
+                            _buildInputField('Level 1'),
                             const SizedBox(height: 8),
-                            _buildInputField('Level 2', color: Colors.white),
+                            _buildInputField('Level 2'),
                             const SizedBox(height: 8),
-                            _buildInputField('Level 3 CS', color: Colors.white),
+                            _buildInputField('Level 3 CS'),
                             const SizedBox(height: 8),
-                            _buildInputField('Level 3 IS', color: Colors.white),
+                            _buildInputField('Level 3 IS'),
                             const SizedBox(height: 8),
-                            _buildInputField('Level 4 CS', color: Colors.white),
+                            _buildInputField('Level 4 CS'),
                             const SizedBox(height: 8),
-                            _buildInputField('Level 4 IS', color: Colors.white),
+                            _buildInputField('Level 4 IS'),
                             const SizedBox(height: 16),
                             SizedBox(
                               width: 200,
