@@ -1,6 +1,5 @@
 import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:adaa/presentation/views/screens_advisor/dashboard.dart';
-import 'package:adaa/presentation/views/screens_advisor/pages/default_schedule_screen.dart';
 import 'package:adaa/presentation/views/screens_advisor/requests.dart';
 import 'package:flutter/material.dart';
 
@@ -14,20 +13,8 @@ class SemesterInfoPage extends StatefulWidget {
 }
 
 class _SemesterInfoPageState extends State<SemesterInfoPage> {
-  String? selectedList;
-  String? selectedSemester;
-  String? selectedLevel;
-
-  final Map<String, bool> courseSelections = {
-    'English Language 1': false,
-    'English Language 2': false,
-    'Intro to Computer Science': false,
-    'Physics': false,
-    'Mathematics 1': false,
-    'Programming 1': false,
-    'Ethics & Human Rights': false,
-    'Academic English': false,
-  };
+  final TextEditingController departmentController = TextEditingController();
+  final TextEditingController timeSlotController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -109,133 +96,344 @@ class _SemesterInfoPageState extends State<SemesterInfoPage> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            Expanded(
-              child: Card(
-                elevation: 4,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Welcome!',
-                          style: TextStyle(
-                              fontSize: 32, fontWeight: FontWeight.bold)),
-
-                      // DropdownButtonFormField<String>(
-                      //   decoration: InputDecoration(
-                      //     labelText: 'Choose List',
-                      //     border: OutlineInputBorder(),
-                      //     contentPadding: EdgeInsets.symmetric(
-                      //         horizontal: 12, vertical: 16),
-                      //   ),
-                      //   value: selectedList,
-                      //   items: ['2013', '2016', '2020'].map((String value) {
-                      //     return DropdownMenuItem<String>(
-                      //       value: value,
-                      //       child: Text(value),
-                      //     );
-                      //   }).toList(),
-                      //   onChanged: (value) {
-                      //     setState(() {
-                      //       selectedList = value;
-                      //     });
-                      //   },
-                      // ),
-                      // SizedBox(height: 16),
-                      DropdownButtonFormField<String>(
-                        decoration: InputDecoration(
-                          labelText: 'Choose Semester',
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 16),
-                        ),
-                        value: selectedSemester,
-                        items: ['Fall', 'Spring'].map((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                        onChanged: (value) {
-                          setState(() {
-                            selectedSemester = value;
-                          });
-                        },
-                      ),
-                      SizedBox(height: 20),
-
-                      Center(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            _navigateToSchedule(); // Navigate without requiring selected courses
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                Color(0xFF0d6efd), // Custom blue color
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 44, vertical: 16), // Custom padding
-                            disabledBackgroundColor: Colors.grey,
-                          ),
-                          child: Text('Next',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/advisorylogostroke.png',
-                      height: 300,
-                    ),
-                    SizedBox(height: 20),
-                    Text(
-                      'Academic Advising System',
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 24),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // Welcome at the top and centered
+                Padding(
+                  padding: const EdgeInsets.only(top: 32.0, bottom: 24.0),
+                  child: Center(
+                    child: Text(
+                      'Welcome!',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF0d6efd),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Select your preferences to create a semester schedule',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey[700],
+                  ),
+                ),
+                // The rest of the screen as a Row
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Left side
+                    Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 32),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(width: 10),
+                                Text(
+                                  'We are now in ',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'Spring 2025!',
+                                  style: TextStyle(
+                                    color: Colors.green,
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                              ],
+                            ),
+                            Text('Enter number of students for each level',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                )),
+                            // 6 input fields instead of labels
+                            SizedBox(height: 12),
+                            // For each input, wrap with Container for width and background
+                            Container(
+                              width: double.infinity,
+                              constraints:
+                                  BoxConstraints(minWidth: 150, maxWidth: 700),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 2), // reduced vertical padding
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Level 1',
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 8,
+                                      horizontal:
+                                          12), // reduced vertical content padding
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Container(
+                              width: double.infinity,
+                              constraints: BoxConstraints(
+                                  minWidth: 150,
+                                  maxWidth: 700), // Increased width
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 2), // reduced vertical padding
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Level 2',
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 8,
+                                      horizontal:
+                                          12), // reduced vertical content padding
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Container(
+                              width: double.infinity,
+                              constraints: BoxConstraints(
+                                  minWidth: 150,
+                                  maxWidth: 700), // Increased width
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 2), // reduced vertical padding
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Level 3 CS',
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 8,
+                                      horizontal:
+                                          12), // reduced vertical content padding
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Container(
+                              width: double.infinity,
+                              constraints: BoxConstraints(
+                                  minWidth: 150,
+                                  maxWidth: 700), // Increased width
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 2), // reduced vertical padding
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Level 3 IS',
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 8,
+                                      horizontal:
+                                          12), // reduced vertical content padding
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Container(
+                              constraints: BoxConstraints(
+                                  minWidth: 150,
+                                  maxWidth: 700), // Increased width
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 2), // reduced vertical padding
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Level 4 CS',
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 8,
+                                      horizontal:
+                                          12), // reduced vertical content padding
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 8),
+                            Container(
+                              width: double.infinity,
+                              constraints: BoxConstraints(
+                                  minWidth: 150,
+                                  maxWidth: 700), // Increased width
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 2), // reduced vertical padding
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  hintText: 'Level 4 IS',
+                                  filled: true,
+                                  fillColor: Colors.white,
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 8,
+                                      horizontal:
+                                          12), // reduced vertical content padding
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 16),
+                            // Add department button
+                            SizedBox(
+                              width: 200,
+                              height: 30,
+                              child: ElevatedButton(
+                                onPressed: () {},
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.blueAccent[700],
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8),
+                                ),
+                                child: const Text('Add department',
+                                    style: TextStyle(
+                                        fontSize: 14, color: Colors.white)),
+                              ),
+                            ),
+                            SizedBox(height: 2),
+                            // Text field
+
+                            // Time slot label
+                            Row(
+                              children: [
+                                SizedBox(width: 10),
+                                Text(
+                                  'Enter time slot for each department.',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  ' e.g. 5 slots',
+                                  style: TextStyle(
+                                    color: Colors.grey[400],
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            // Time slot text field
+                            TextField(
+                              controller: timeSlotController,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                hintText: 'Time slot',
+                              ),
+                            ),
+                            SizedBox(height: 16),
+                            Row(
+                              children: [
+                                SizedBox(width: 10),
+                                Text(
+                                  'click to',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  ' Generate ',
+                                  style: TextStyle(
+                                    color: Colors.green,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'the student schedules and',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Text(
+                              ' instructor/teaching Assistant schedules.',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            // Generate Schedules button
+                            Padding(
+                              padding: EdgeInsets.only(top: 16),
+                              child: SizedBox(
+                                width: 200,
+                                height: 30,
+                                child: ElevatedButton(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.green,
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 2),
+                                  ),
+                                  child: const Text('Generate Schedules',
+                                      style: TextStyle(
+                                          fontSize: 16, color: Colors.white)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    // Right side: Big image
+                    Expanded(
+                      flex: 3,
+                      child: Center(
+                        child: Image.asset(
+                          'assets/photostudent.jpg',
+                          height: 400,
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                   ],
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  void _navigateToSchedule() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DefaultScheduleScreen(
-          level: 4,
-          semester: 2,
-          // Pass other parameters if needed
+          ),
         ),
       ),
     );

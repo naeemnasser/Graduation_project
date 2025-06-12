@@ -175,10 +175,18 @@ class TuitionReceitEx extends StatelessWidget {
       children: const [
         Column(
           children: [
-            Text("Financial Affairs Signature", style: TextStyle(fontSize: 14)),
-            SizedBox(height: 30),
-            Text("finsignature"),
+            Expanded(
+              child: Text("Financial Affairs Signature",
+                  style: TextStyle(fontSize: 14)),
+            ),
+            SizedBox(height: 10),
+            Expanded(
+              child: Text("finsignature"),
+            ),
           ],
+        ),
+        SizedBox(
+          width: 20,
         ),
         Column(
           children: [

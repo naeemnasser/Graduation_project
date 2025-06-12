@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../student_affairs/tuition_receipts.dart';
 import 'tutition_receipt.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -117,7 +118,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    TuitionReceitEx(),
+                                                    TuitionReceiptPage(),
                                               ),
                                             );
                                           },
