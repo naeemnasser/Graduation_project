@@ -2,7 +2,6 @@ import 'package:adaa/presentation/views/screens_admin/loginPage.dart';
 import 'package:adaa/presentation/views/screens_advisor/dashboard.dart';
 import 'package:adaa/presentation/views/screens_advisor/requests.dart';
 import 'package:flutter/material.dart';
-
 import '../profile/personal_profile.dart';
 
 class SemesterInfoPage extends StatefulWidget {
@@ -16,13 +15,57 @@ class _SemesterInfoPageState extends State<SemesterInfoPage> {
   final TextEditingController departmentController = TextEditingController();
   final TextEditingController timeSlotController = TextEditingController();
 
+  Widget _buildInputField(String hint, {Color? color}) {
+    return Container(
+      width: double.infinity,
+      constraints: const BoxConstraints(minWidth: 150, maxWidth: 700),
+      decoration: BoxDecoration(
+        color: color ?? Colors.white,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+      child: TextField(
+        decoration: InputDecoration(
+          border: const OutlineInputBorder(),
+          hintText: hint,
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSectionTitle(String text,
+      {double fontSize = 16,
+      FontWeight fontWeight = FontWeight.bold,
+      Color? color}) {
+    return Text(
+      text,
+      style:
+          TextStyle(fontSize: fontSize, fontWeight: fontWeight, color: color),
+    );
+  }
+
+  Widget _buildInfoRow(List<InlineSpan> children) {
+    return Row(
+      children: [
+        const SizedBox(width: 10),
+        RichText(
+            text: TextSpan(
+                children: children, style: DefaultTextStyle.of(context).style)),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pushReplacement(
               context,
@@ -33,79 +76,70 @@ class _SemesterInfoPageState extends State<SemesterInfoPage> {
         elevation: 1,
         title: Row(
           children: [
-            Image.asset("assets/advisorylogostroke.png",
-                height: 40), // Replace with your logo
-            SizedBox(width: 10),
+            Image.asset("assets/advisorylogostroke.png", height: 40),
+            const SizedBox(width: 10),
             TextButton(
               onPressed: () {
                 Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => SemesterInfoPage()),
-                );
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SemesterInfoPage()));
               },
-              child: Text("Semester Info",
+              child: const Text("Semester Info",
                   style: TextStyle(
                       color: Colors.black, fontWeight: FontWeight.bold)),
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => Requests()),
-                );
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => Requests()));
               },
-              child: Text("Requests", style: TextStyle(color: Colors.black)),
+              child:
+                  const Text("Requests", style: TextStyle(color: Colors.black)),
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => DashboardPage()),
-                );
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => DashboardPage()));
               },
-              child: Text("Dashboard", style: TextStyle(color: Colors.black)),
+              child: const Text("Dashboard",
+                  style: TextStyle(color: Colors.black)),
             ),
           ],
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications, color: Colors.black),
-            onPressed: () {},
-          ),
+              icon: const Icon(Icons.notifications, color: Colors.black),
+              onPressed: () {}),
           IconButton(
-            icon: Icon(Icons.person, color: Colors.black),
+            icon: const Icon(Icons.person, color: Colors.black),
             onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => ProfilePage()),
-              );
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()));
             },
           ),
           IconButton(
-            icon: Icon(Icons.help_outline, color: Colors.black),
-            onPressed: () {},
-          ),
+              icon: const Icon(Icons.help_outline, color: Colors.black),
+              onPressed: () {}),
           TextButton(
             onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
-              );
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()));
             },
-            child: Text("Logout", style: TextStyle(color: Colors.black)),
+            child: const Text("Logout", style: TextStyle(color: Colors.black)),
           ),
         ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.only(bottom: 24),
+            padding: const EdgeInsets.only(bottom: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Welcome at the top and centered
-                Padding(
-                  padding: const EdgeInsets.only(top: 32.0, bottom: 24.0),
+                const Padding(
+                  padding: EdgeInsets.only(top: 32.0, bottom: 24.0),
                   child: Center(
                     child: Text(
                       'Welcome!',
@@ -116,7 +150,6 @@ class _SemesterInfoPageState extends State<SemesterInfoPage> {
                     ),
                   ),
                 ),
-                // The rest of the screen as a Row
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -131,187 +164,31 @@ class _SemesterInfoPageState extends State<SemesterInfoPage> {
                           children: [
                             Row(
                               children: [
-                                SizedBox(width: 10),
-                                Text(
-                                  'We are now in ',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Spring 2025!',
-                                  style: TextStyle(
-                                    color: Colors.green,
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                SizedBox(height: 10),
+                                const SizedBox(width: 10),
+                                _buildSectionTitle('We are now in ',
+                                    fontSize: 20),
+                                _buildSectionTitle('Spring 2025!',
+                                    fontSize: 22, color: Colors.green),
+                                const SizedBox(height: 10),
                               ],
                             ),
-                            Text('Enter number of students for each level',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                )),
-                            // 6 input fields instead of labels
-                            SizedBox(height: 12),
-                            // For each input, wrap with Container for width and background
-                            Container(
-                              width: double.infinity,
-                              constraints:
-                                  BoxConstraints(minWidth: 150, maxWidth: 700),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 2), // reduced vertical padding
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Level 1',
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 8,
-                                      horizontal:
-                                          12), // reduced vertical content padding
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 8),
-                            Container(
-                              width: double.infinity,
-                              constraints: BoxConstraints(
-                                  minWidth: 150,
-                                  maxWidth: 700), // Increased width
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 2), // reduced vertical padding
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Level 2',
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 8,
-                                      horizontal:
-                                          12), // reduced vertical content padding
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 8),
-                            Container(
-                              width: double.infinity,
-                              constraints: BoxConstraints(
-                                  minWidth: 150,
-                                  maxWidth: 700), // Increased width
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 2), // reduced vertical padding
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Level 3 CS',
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 8,
-                                      horizontal:
-                                          12), // reduced vertical content padding
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 8),
-                            Container(
-                              width: double.infinity,
-                              constraints: BoxConstraints(
-                                  minWidth: 150,
-                                  maxWidth: 700), // Increased width
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 2), // reduced vertical padding
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Level 3 IS',
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 8,
-                                      horizontal:
-                                          12), // reduced vertical content padding
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 8),
-                            Container(
-                              constraints: BoxConstraints(
-                                  minWidth: 150,
-                                  maxWidth: 700), // Increased width
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 2), // reduced vertical padding
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Level 4 CS',
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 8,
-                                      horizontal:
-                                          12), // reduced vertical content padding
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 8),
-                            Container(
-                              width: double.infinity,
-                              constraints: BoxConstraints(
-                                  minWidth: 150,
-                                  maxWidth: 700), // Increased width
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(6),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 2), // reduced vertical padding
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  hintText: 'Level 4 IS',
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  contentPadding: EdgeInsets.symmetric(
-                                      vertical: 8,
-                                      horizontal:
-                                          12), // reduced vertical content padding
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 16),
-                            // Add department button
+                            _buildSectionTitle(
+                                'Enter number of students for each level',
+                                fontSize: 16,
+                                fontWeight: FontWeight.normal),
+                            const SizedBox(height: 12),
+                            _buildInputField('Level 1', color: Colors.white),
+                            const SizedBox(height: 8),
+                            _buildInputField('Level 2', color: Colors.white),
+                            const SizedBox(height: 8),
+                            _buildInputField('Level 3 CS', color: Colors.white),
+                            const SizedBox(height: 8),
+                            _buildInputField('Level 3 IS', color: Colors.white),
+                            const SizedBox(height: 8),
+                            _buildInputField('Level 4 CS', color: Colors.white),
+                            const SizedBox(height: 8),
+                            _buildInputField('Level 4 IS', color: Colors.white),
+                            const SizedBox(height: 16),
                             SizedBox(
                               width: 200,
                               height: 30,
@@ -327,77 +204,55 @@ class _SemesterInfoPageState extends State<SemesterInfoPage> {
                                         fontSize: 14, color: Colors.white)),
                               ),
                             ),
-                            SizedBox(height: 2),
-                            // Text field
-
+                            const SizedBox(height: 2),
                             // Time slot label
-                            Row(
-                              children: [
-                                SizedBox(width: 10),
-                                Text(
-                                  'Enter time slot for each department.',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  ' e.g. 5 slots',
-                                  style: TextStyle(
-                                    color: Colors.grey[400],
+                            _buildInfoRow([
+                              const TextSpan(
+                                text: 'Enter time slot for each department.',
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(
+                                text: ' e.g. 5 slots',
+                                style: TextStyle(
+                                    color: Colors.grey,
                                     fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 10),
-                            // Time slot text field
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ]),
+                            const SizedBox(height: 10),
                             TextField(
                               controller: timeSlotController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: 'Time slot',
                               ),
                             ),
-                            SizedBox(height: 16),
-                            Row(
-                              children: [
-                                SizedBox(width: 10),
-                                Text(
-                                  'click to',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  ' Generate ',
-                                  style: TextStyle(
+                            const SizedBox(height: 16),
+                            _buildInfoRow([
+                              const TextSpan(
+                                text: 'click to',
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.bold),
+                              ),
+                              const TextSpan(
+                                text: ' Generate ',
+                                style: TextStyle(
                                     color: Colors.green,
                                     fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'the student schedules and',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              ' instructor/teaching Assistant schedules.',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
+                                    fontWeight: FontWeight.bold),
                               ),
-                            ),
-                            // Generate Schedules button
+                              const TextSpan(
+                                text: 'the student schedules and',
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.bold),
+                              ),
+                            ]),
+                            _buildSectionTitle(
+                                ' instructor/teaching Assistant schedules.',
+                                fontSize: 14),
                             Padding(
-                              padding: EdgeInsets.only(top: 16),
+                              padding: const EdgeInsets.only(top: 16),
                               child: SizedBox(
                                 width: 200,
                                 height: 30,
